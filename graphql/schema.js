@@ -6,6 +6,14 @@ type User {
   password: String
   zip: Int
 }
+type Itinerary {
+  _id: String
+  name: String
+  date: String
+  time: String
+  activities: [String]
+}
+
 type Query {
   allUsers(
     name: String
@@ -15,7 +23,16 @@ type Query {
   ): [User!]!,
   getUser(
     id: String!
-  ): User!
+  ): User!,
+  allItineraries(
+    name: String
+    date: String
+    time: String
+    activities: [String]
+  ): [Itinerary]!,
+  getItinerary(
+    id: String!
+  ): Itinerary!,
 }
 type Mutation {
   createUser(
