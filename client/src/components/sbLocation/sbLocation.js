@@ -12,10 +12,14 @@ import "./sbLocation.css";
 class SbLocation extends Component {
     render() {
         return (
-            <h4>
-            Search By Zipcode or Landmark
-          </h4>
-                    
+            <div>
+            <h6>
+        enter zipcode or location name to search
+          </h6>
+                   <form>
+                   <input type='text'/>
+               </form>  
+               </div>     
         )
     }
             }

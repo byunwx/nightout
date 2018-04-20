@@ -9,10 +9,16 @@ class SbMeal extends Component {
     render() {
         return (
 
-            
-            <h4>
+            <div>
+            <h6>
             Search By Restaurant
-          </h4>
+          </h6>
+            <form>
+                <input type='text'/>
+                    {/* buttons for cost     */}
+                {/* switch for patio, dog friendly etc     */}
+            </form>
+            </div>
         )
     }
             }

@@ -8,10 +8,16 @@ import "./sbEvent.css";
 class SbEvent extends Component {
     render() {
         return (
-            <h4>
+            <div>
+            <h6>
             Search By Event
-          </h4>
-            
+          </h6>
+          <form>
+                <input type='text'/>
+                    {/* buttons for concert, play, sportts    */}
+       
+            </form>      
+            </div>
                     
         )
     }

@@ -14,7 +14,7 @@ class Navbar extends Component {
                         <ul className="right hide-on-med-and-down">
                             <li>
                                 <a href="/search">New</a>
-                            </li>s
+                            </li>
                             <li>
                                 <a href="#">Upcoming</a>
                             </li>

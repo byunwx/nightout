@@ -13,7 +13,7 @@ export class Container extends Component {
         if (!this.props.loaded) {
             return <div>Loading...</div>
         }
-        return (
+        ret urn (
             <div style={style}>
                 <Map google={this.props.google}/>
             </div>
@@ -21,15 +21,7 @@ export class Container extends Component {
     }
 }
 
-export class Map extends React.Component {
-    render() {
-      return (
-        <div ref='map'>
-          Loading map...
-        </div>
-      )
-    }
-  }
+
 export default GoogleApiComponent({apiKey: "AIzaSyDNlVbpXn5uOh3REZ7tpw_qvmVcqcpWRgM"})(Container)
 
 /* **THIS IS THE LAST LINE OF CODE** */
