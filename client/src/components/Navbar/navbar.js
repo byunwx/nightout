@@ -3,7 +3,20 @@ import React, { Component } from "react";
 import "./navbar.css";
 
 class Navbar extends Component {
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
+
+  login() {
+    this.props.auth.login();
+  }
+
+  logout() {
+    this.props.auth.logout();
+  }
     render() {
+        const { isAuthenticated } = this.props.auth;
+        //checking for auth
         return (
             <div>
                 <nav>
@@ -11,20 +24,33 @@ class Navbar extends Component {
                         <a href="/" clasName="brand-logo">
                             NightOut
                         </a>
-                        <ul className="right hide-on-med-and-down">
-                            <li>
-                                <a href="/search">New</a>
-                            </li>
-                            <li>
-                                <a href="#">Upcoming</a>
-                            </li>
-                            <li>
-                                <a href="#">Planning</a>
-                            </li>
-                            <li>
-                                <a href="#">Past</a>
-                            </li>
-                        </ul>
+                        {
+                          !isAuthenticated() && (
+                            <ul className="right hide-on-med-and-down">
+                                <li>
+                                    <a onClick={this.login.bind(this)}>Log In</a>
+                                </li>
+                            </ul>
+                            )
+                        }
+                        {
+                          isAuthenticated() && (
+                            <ul className="right hide-on-med-and-down">
+                                <li>
+                                    <a href="/search">New</a>
+                                </li>
+                                <li>
+                                    <a href="#">Upcoming</a>
+                                </li>
+                                <li>
+                                    <a href="#">Planning</a>
+                                </li>
+                                <li>
+                                    <a href="#">Past</a>
+                                </li>
+                            </ul>
+                            )
+                        }
                     </div>
                 </nav>
             </div>

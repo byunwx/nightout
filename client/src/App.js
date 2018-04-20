@@ -14,15 +14,28 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 // import { Provider } from 'react-redux'; import store, { history } from
 // './store';
 
+import Callback from './Callback/Callback';
+import Auth from './Auth/Auth';
+import history from './history';
+//auth0 stuff
+const auth = new Auth();
+
+const handleAuthentication = ({location}) => {
+  if (/access_token|id_token|error/.test(location.hash)) {
+    auth.handleAuthentication();
+  }
+}
+//autho0 handler
+
 class App extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
+        <Navbar auth={auth} {...props} />}/>
         <h1 className="center-align">
           Welcome to NightOut
         </h1>
-        <Router>
+        <Router history={history}>
           <div>
             <Switch>
               <Route exact path="/" component={Home}/>
