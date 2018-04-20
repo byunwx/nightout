@@ -1,17 +1,25 @@
 /*dependencies*/
-import React from "react";
+import React, {Component} from "react";
 import "./sbMeal.css";
 
 
 
 
+class sbMeal extends Component {
+    render() {
+        return (
 
-
-
-
-
-
-
-
-/* **THIS IS THE LAST LINE OF CODE** */ 
-export default sbMeal;
+            
+            <h4>
+            Search By Restaurant
+          </h4>
+        )
+    }
+            }
+            
+            
+            
+            
+            
+            /* **THIS IS THE LAST LINE OF CODE** */ 
+            export default sbMeal;
