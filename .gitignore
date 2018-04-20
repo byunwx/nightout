@@ -4,3 +4,4 @@ node_modules
 .eslintrc.json
 .vscode
 .babelrc
+yarn-error.log
