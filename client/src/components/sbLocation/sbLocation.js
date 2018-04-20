@@ -9,7 +9,7 @@ import "./sbLocation.css";
 
 
 
-class sbLocation extends Component {
+class SbLocation extends Component {
     render() {
         return (
             <h4>
@@ -25,4 +25,4 @@ class sbLocation extends Component {
 
 
 /* **THIS IS THE LAST LINE OF CODE** */ 
-export default sbLocation;
+export default SbLocation;

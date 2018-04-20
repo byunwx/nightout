@@ -8,13 +8,13 @@ class Navbar extends Component {
             <div>
                 <nav>
                     <div className="nav-wrapper">
-                        <a href="#" clasName="brand-logo">
+                        <a href="/" clasName="brand-logo">
                             NightOut
                         </a>
                         <ul className="right hide-on-med-and-down">
                             <li>
-                                <a href="#">New</a>
-                            </li>
+                                <a href="/search">New</a>
+                            </li>s
                             <li>
                                 <a href="#">Upcoming</a>
                             </li>

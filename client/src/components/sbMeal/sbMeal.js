@@ -5,7 +5,7 @@ import "./sbMeal.css";
 
 
 
-class sbMeal extends Component {
+class SbMeal extends Component {
     render() {
         return (
 
@@ -22,4 +22,4 @@ class sbMeal extends Component {
             
             
             /* **THIS IS THE LAST LINE OF CODE** */ 
-            export default sbMeal;
+            export default SbMeal;

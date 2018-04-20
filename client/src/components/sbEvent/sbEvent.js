@@ -5,7 +5,7 @@ import "./sbEvent.css";
 
 
 
-class sbEvent extends Component {
+class SbEvent extends Component {
     render() {
         return (
             <h4>
@@ -21,4 +21,4 @@ class sbEvent extends Component {
 
 
 /* **THIS IS THE LAST LINE OF CODE** */ 
-export default sbEvent;
+export default SbEvent;

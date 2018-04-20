@@ -4,9 +4,9 @@ import React, {Component} from "react";
 
 //Import Components
 
-import sbMeal from '../sbMeal/sbMeal';
-import sbLocation from '../sbLocation/sbLocation';
-import sbEvent from '../sbEvent/sbEvent';
+import SbMeal from '../sbMeal/sbMeal';
+import SbLocation from '../sbLocation/sbLocation';
+import SbEvent from '../sbEvent/sbEvent';
 import Itinerary from '../Itinerary/itinerary';
 import "./search.css";
 
@@ -32,9 +32,9 @@ import "./search.css";
                                    Search tabs router goes here
                                 </p>
                         
-                                < sbLocation/>
-                                < sbMeal/>
-                                < sbEvent/>
+                                < SbLocation/>
+                                < SbMeal/>
+                                < SbEvent/>
                           
                         </div>
                         <div className=" center-align col m8">
