@@ -10,7 +10,7 @@ import Navbar from './components/Navbar/navbar';
 // import MapContainer from '../mapView/mapView';
 import Search from './components/Search/search';
 // import react router deps
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {Router, Route, Switch} from 'react-router-dom';
 // import { Provider } from 'react-redux'; import store, { history } from
 // './store';
 
