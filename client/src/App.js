@@ -31,16 +31,20 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar auth={auth} {...props} />}/>
-        <h1 className="center-align">
-          Welcome to NightOut
-        </h1>
         <Router history={history}>
           <div>
+            <Route path="/" render={(props) =><Navbar auth={auth} {...props} />} />
+              <h1 className="center-align">
+                Welcome to NightOut
+              </h1>
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route exact path="/search" component={Search}/>
             </Switch>
+            <Route path="/callback" render={(props) => {
+              handleAuthentication(props);
+              return <Callback {...props} />
+            }}/>
           </div>
         </Router>
       </div>
