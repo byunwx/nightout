@@ -1,3 +1,7 @@
 node_modules
 .DS_Store
 .env
+.eslintrc.json
+.vscode
+.babelrc
+yarn-error.log

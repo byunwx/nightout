@@ -1,19 +1,19 @@
 Arguments: 
   /usr/local/bin/node /usr/local/bin/yarn start
 
-PATH: 
+PATH:
   /Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
-Yarn version: 
+Yarn version:
   1.5.1
 
-Node version: 
+Node version:
   8.9.4
 
-Platform: 
-  darwin x64
+Platform:
+  win32 x64
 
-npm manifest: 
+npm manifest:
   {
     "name": "mern",
     "version": "1.0.0",
@@ -37,28 +37,32 @@ npm manifest:
     },
     "homepage": "https://github.com/byunwx/mern#readme",
     "dependencies": {
+      "apollo-boost": "^0.1.4",
       "concurrently": "^3.5.1",
       "express": "^4.16.3",
+      "graphql": "^0.13.2",
+      "graphql-tag": "^2.8.0",
+      "graphql-tools": "^2.24.0",
       "mongoose": "^5.0.14",
       "path": "^0.12.7",
       "redux": "^4.0.0"
     }
   }
 
-yarn manifest: 
+yarn manifest:
   No manifest
 
-Lockfile: 
+Lockfile:
   No lockfile
 
-Trace: 
+Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
   Arguments: -c node server.js
   Directory: /Users/woojoobyun/apps/HW/nightout
   Output:
-  
+
       at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
       at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
       at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
