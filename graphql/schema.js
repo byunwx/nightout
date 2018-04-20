@@ -11,10 +11,27 @@ type Itinerary {
   name: String
   date: String
   time: String
-  activities: [String]
+  activities: [Activity]
+}
+type Activity {
+  name: String
+  location: String
+  url: String
+}
+type Restaurant {
+  name: String
+  location: String
+  url: String
+  price: String
+  phone: String
+  coordinates: [Float]
 }
 
 type Query {
+  yelpSearch(
+    search: String
+    location: String
+  ): [Restaurant]
   allUsers(
     name: String
     email: String
@@ -32,7 +49,7 @@ type Query {
   ): [Itinerary]!,
   getItinerary(
     id: String!
-  ): Itinerary!,
+  ): Itinerary!
 }
 type Mutation {
   createUser(
@@ -40,7 +57,12 @@ type Mutation {
     email: String
     password: String
     zip: Int
-  ): User!
-
+  ): User!,
+  createItinerary(
+    name: String
+    date: String
+    time: String
+    activities: [String]
+  ): Itinerary!,
 }
 `
