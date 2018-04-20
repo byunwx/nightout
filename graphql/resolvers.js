@@ -57,6 +57,36 @@ export default {
         x.phone = x.display_phone
         return x
       })
+    },
+    eventSearch: async(root, args) => {
+      const searchObj = {
+        method: 'GET',
+        url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${args.search}&postalcode=${args.zip}&apikey=s1uN2WrLRp0qy5GC24ayc4AfZydFFKth`,
+        json: true
+      }
+      const results = await axios(searchObj)
+      // console.log(results.data._embedded.events[0])
+      const events = await results.data._embedded.events
+      return events.map(x => {
+        if (x.info === undefined && x.pleaseNote != undefined) {
+          x.info = x.pleaseNote
+        } else if (x.info === undefined && x.pleaseNote === undefined) {
+          x.info = 'No additional info.'
+        }
+        if (x.seatmap === undefined) {
+          x.seatMap = 'No seat map available.'
+        } else
+          x.seatMap = x.seatmap.staticUrl
+        if (x.dates.start.dateTime === undefined) {
+          x.startDate = 'No start date/time found'
+        } else
+          x.startDate = x.dates.start.dateTime
+        if (x._embedded.venues[0].postalCode === undefined) {
+          x.eventLocation = 'No location found'
+        } else
+          x.eventLocation = x._embedded.venues[0].postalCode
+        return x
+      })
     }
   },
   Mutation : {

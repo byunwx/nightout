@@ -15,8 +15,11 @@ type Itinerary {
 }
 type Activity {
   name: String
-  location: String
+  info: String
+  eventLocation: String
   url: String
+  startDate: String
+  seatMap: String
 }
 type Restaurant {
   name: String
@@ -26,12 +29,15 @@ type Restaurant {
   phone: String
   coordinates: [Float]
 }
-
 type Query {
   yelpSearch(
     search: String
     location: String
   ): [Restaurant]
+  eventSearch(
+    search: String
+    zip: String
+  ): [Activity]
   allUsers(
     name: String
     email: String
@@ -51,6 +57,7 @@ type Query {
     id: String!
   ): Itinerary!
 }
+
 type Mutation {
   createUser(
     name: String
@@ -63,6 +70,6 @@ type Mutation {
     date: String
     time: String
     activities: [String]
-  ): Itinerary!,
+  ): Itinerary!
 }
 `
