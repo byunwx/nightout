@@ -13,6 +13,7 @@ class Navbar extends Component {
 
   logout() {
     this.props.auth.logout();
+    window.location.reload();
   }
     render() {
         const { isAuthenticated } = this.props.auth;
@@ -21,7 +22,7 @@ class Navbar extends Component {
             <div>
                 <nav>
                     <div className="nav-wrapper">
-                        <a href="/" clasName="brand-logo">
+                        <a href="/" className="brand-logo">
                             NightOut
                         </a>
                         {
@@ -40,13 +41,16 @@ class Navbar extends Component {
                                     <a href="/search">New</a>
                                 </li>
                                 <li>
-                                    <a href="#">Upcoming</a>
+                                    <a href="">Upcoming</a>
                                 </li>
                                 <li>
-                                    <a href="#">Planning</a>
+                                    <a href="">Planning</a>
                                 </li>
                                 <li>
-                                    <a href="#">Past</a>
+                                    <a href="">Past</a>
+                                </li>
+                                <li>
+                                    <a onClick={this.logout.bind(this)}>Log Out</a>
                                 </li>
                             </ul>
                             )
