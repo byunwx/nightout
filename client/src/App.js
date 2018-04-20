@@ -17,6 +17,44 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';
+
+// Apollo Client Config
+import ApolloClient from "apollo-boost";
+import gql from "graphql-tag";
+import { ApolloProvider } from "react-apollo";
+import { Query } from "react-apollo";
+
+const YelpSearch = () => (
+  <Query
+    query={gql`
+      {
+        yelpSearch(search: "sushi" location: "20011") {
+          name
+          location
+          url
+          price
+          phone
+        }
+      }
+    `}
+  >
+    {({ loading, error, data }) => {
+      if (loading) return <p>Loading...</p>;
+      if (error) return <p>Error :(</p>;
+      return data.yelpSearch.map(({ name, location, url, price, phone }) => (
+        <div key={name}>
+          <p>{`${name}
+          ${location}
+          ${url}
+          ${price}
+          ${phone}
+          `}</p>
+        </div>
+      ));
+    }}
+  </Query>
+);
+
 //auth0 stuff
 const auth = new Auth();
 
@@ -27,23 +65,49 @@ const handleAuthentication = ({location}) => {
 }
 //autho0 handler
 
+const client = new ApolloClient();
+client
+  .query({
+    query: gql`
+      {
+        yelpSearch(search: "sushi" location: "20011") {
+          name
+          location
+          price
+        }
+      }
+    `
+  })
+  .then(result => console.log(result));
 class App extends Component {
   render() {
     return (
       <div>
         <Router history={history}>
           <div>
-            <Route path="/" render={(props) =><Navbar auth={auth} {...props} />} />
-              <h1 className="center-align">
-                Welcome to NightOut
-              </h1>
+            <Route
+              path="/"
+              render={(props) =>< Navbar auth = {
+              auth
+            }
+            {
+              ...props
+            } />}/>
+            <h1 className="center-align">
+              Welcome to NightOut
+            </h1>
+            <ApolloProvider client={client}>
+            <YelpSearch/>
+            </ApolloProvider>
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route exact path="/search" component={Search}/>
             </Switch>
-            <Route path="/callback" render={(props) => {
+            <Route
+              path="/callback"
+              render={(props) => {
               handleAuthentication(props);
-              return <Callback {...props} />
+              return <Callback {...props}/>
             }}/>
           </div>
         </Router>
@@ -56,7 +120,7 @@ class App extends Component {
 // className="App">         <div className="App-header">           {/* <img
 // src={logo} className="App-logo" alt="logo" /> */}           <h2>Welcome to
 // React</h2>         </div>         <p className="App-intro">           To get
-// started, edit <code>src/App.js</code> and save to reload.         </p>
-// </div>     );   } }
+// started, edit <code>src/App.js</code> and save to reload.         </p> </div>
+//     );   } }
 
 export default App;

@@ -21,7 +21,7 @@ class Navbar extends Component {
             <div>
                 <nav>
                     <div className="nav-wrapper">
-                        <a href="/" clasName="brand-logo">
+                        <a href="/" className="brand-logo">
                             NightOut
                         </a>
                         {
