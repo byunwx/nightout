@@ -8,7 +8,7 @@ import sbMeal from './sbMeal';
 
 
 const SearchRouter = () => (
-    <Switch> 
+    <Switch>
         <Route exact path="/location" component={sbLocation} />
         <Route exact path="/event" component={sbEvent} />
         <Route exact path="/restaurant" component={sbMeal} />
@@ -24,5 +24,5 @@ const SearchRouter = () => (
 
 
 
-/* **THIS IS THE LAST LINE OF CODE** */ 
+/* **THIS IS THE LAST LINE OF CODE** */
 export default SearchRouter;
