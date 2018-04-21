@@ -19,41 +19,41 @@ import Auth from './Auth/Auth';
 import history from './history';
 
 // Apollo Client Config
-import ApolloClient from "apollo-boost";
-import gql from "graphql-tag";
-import { ApolloProvider } from "react-apollo";
-import { Query } from "react-apollo";
+// import ApolloClient from "apollo-boost";
+// import gql from "graphql-tag";
+// import { ApolloProvider } from "react-apollo";
+// import { Query } from "react-apollo";
 
-const YelpSearch = () => (
-  <Query
-    query={gql`
-      {
-        yelpSearch(search: "sushi" location: "20011") {
-          name
-          location
-          url
-          price
-          phone
-        }
-      }
-    `}
-  >
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
-      return data.yelpSearch.map(({ name, location, url, price, phone }) => (
-        <div key={name}>
-          <p>{`${name}
-          ${location}
-          ${url}
-          ${price}
-          ${phone}
-          `}</p>
-        </div>
-      ));
-    }}
-  </Query>
-);
+// const YelpSearch = () => (
+//   <Query
+//     query={gql`
+//       {
+//         yelpSearch(search: "sushi" location: "20011") {
+//           name
+//           location
+//           url
+//           price
+//           phone
+//         }
+//       }
+//     `}
+//   >
+//     {({ loading, error, data }) => {
+//       if (loading) return <p>Loading...</p>;
+//       if (error) return <p>Error :(</p>;
+//       return data.yelpSearch.map(({ name, location, url, price, phone }) => (
+//         <div key={name}>
+//           <p>{`${name}
+//           ${location}
+//           ${url}
+//           ${price}
+//           ${phone}
+//           `}</p>
+//         </div>
+//       ));
+//     }}
+//   </Query>
+// );
 
 //auth0 stuff
 const auth = new Auth();
@@ -65,20 +65,22 @@ const handleAuthentication = ({location}) => {
 }
 //autho0 handler
 
-const client = new ApolloClient();
-client
-  .query({
-    query: gql`
-      {
-        yelpSearch(search: "sushi" location: "20011") {
-          name
-          location
-          price
-        }
-      }
-    `
-  })
-  .then(result => console.log(result));
+// const client = new ApolloClient();
+// client
+//   .query({
+//     query: gql`
+//       {
+//         yelpSearch(search: "sushi" location: "20011") {
+//           name
+//           location
+//           price
+//         }
+//       }
+//     `
+//   })
+//   .then(result => console.log(result));
+
+
 class App extends Component {
   render() {
     return (
@@ -96,9 +98,9 @@ class App extends Component {
             <h1 className="center-align">
               Welcome to NightOut
             </h1>
-            <ApolloProvider client={client}>
+            {/* <ApolloProvider client={client}>
             <YelpSearch/>
-            </ApolloProvider>
+            </ApolloProvider> */}
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route exact path="/search" component={Search}/>
