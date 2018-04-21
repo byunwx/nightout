@@ -10,7 +10,7 @@ class Itinerary extends Component {
                     Sample Itinerary
                 </h1>
                 <div className="row">
-                    <div className="col m2 offset-m2">
+                    <div className="col m2 ">
                         <p>
                             7:00 PM
                         </p>
