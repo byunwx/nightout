@@ -1,11 +1,10 @@
 import React, {Component} from "react";
 
-
 // import components
 
 import Itinerary from '../Itinerary/itinerary';
-// import Search from '../Search/search';
-// import MapContainer from '../mapView/mapView';
+// import Search from '../Search/search'; import MapContainer from
+// '../mapView/mapView';
 
 class Home extends Component {
     render() {
@@ -16,10 +15,12 @@ class Home extends Component {
                     tabs: upcoming | Planning | Past
                     Render array of itins*/}
                 <div className="center-align">
-                    <button >
-                          <a href= "/search">  Plan Your Next Date</a>
-                        </button>
-            </div>
+                    <button className=" search-btn">
+                        <a href="/search">
+                            Plan Your Next Date
+                        </a>
+                    </button>
+                </div>
                 <div className="row">
                     <div className=" col m3 offset-m1">
 
@@ -33,7 +34,7 @@ class Home extends Component {
                         {/* < MapContainer/> */}
                     </div>
                     <div className=" col m8">
-                    
+
                         <Itinerary/>
                     </div>
                 </div>

@@ -1,28 +1,68 @@
-.App {
-  text-align: center;
+
+/* Style the video: 100% width and height to cover the entire window */
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
+/* Add some content at the bottom of the video/page */
+.content {
+  position: fixed;
+  color: #f1f1f1;
+  width: 100%;
   padding: 20px;
-  color: white;
+  margin: auto;
+
 }
 
-.App-title {
-  font-size: 1.5em;
+.logo{
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 250px;
 }
 
-.App-intro {
-  font-size: large;
+.tagline {
+  font-family: 'Comfortaa', cursive;
+  font-size: 40px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.login-btn{
+
+  background-color:rgb(205,107,75);
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: center;
+
+}
+.login-btn h6{
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 40px;
+  color: rgb(50, 38, 66);
+}
+
+.search-btn{
+
+  background-color:rgb(205,107,75);
+  padding: 40px;
+  margin: center;
+  margin: 30px;
+  font-family: 'Comfortaa', cursive;
+  font-size: 30px;
+  color: rgb(50, 38, 66);
+  /* text-decoration: none; */
+}
+
+.search-btn a{
+
+  font-family: 'Comfortaa', cursive;
+  font-size: 30px;
+  color: rgb(50, 38, 66);
+
+}
+p, a, h2 {
+  font-family: 'Comfortaa', cursive;
+  color: rgb(50, 38, 66);
 }

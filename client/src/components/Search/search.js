@@ -10,6 +10,7 @@ import MapView from '../mapView/mapView';
 import YelpSearch from '../Results/yelpResults';
 import client from '../Results/client';
 
+
 //Import Apollo
 import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
