@@ -19,11 +19,11 @@ class landing extends Component {
 
           <div class="content center-align">
             <h1 className="logo">Let's Go Out</h1>
-                    <p className="tagline">planning a perfect night has never been so easy</p>
+                    <h3 className="tagline">planning a perfect night has never been so easy</h3>
 
                     <a href="/home">
-                        <button>
-                            <h6 className="login-btn">
+                        <button className="waves-effect waves-light btn-large login-btn">
+                            <h6>
                                 Log In
                             </h6>
                         </button>

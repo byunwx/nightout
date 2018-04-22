@@ -6,9 +6,9 @@ class Itinerary extends Component {
     render() {
         return (
             <div >
-                <h1 className="center-align">
+                <h2 className="center-align">
                     Sample Itinerary
-                </h1>
+                </h2>
                 <div className="row">
                     <div className="col m2 ">
                         <p>
