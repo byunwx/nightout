@@ -3,27 +3,24 @@ import React from "react";
 import "./results.css";
 
 //apollo dependencies
-import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
-import { ApolloProvider } from "react-apollo";
-import { Query } from "react-apollo";
+import { Query } from "react-apollo"
 
-
-
-
-const YelpSearch = () => (
+const YelpSearch = (search, location) => {
+    const GET_YELP_RESULT = gql`
+query yelpSearch($search: String  $location: String) {
+  yelpSearch(search: $search location: $location) {
+    name
+    location
+    url
+    price
+    phone
+  }
+}
+`
+return (
     <Query
-      query={gql`
-        {
-          yelpSearch(search: "sushi" location: "20011") {
-            name
-            location
-            url
-            price
-            phone
-          }
-        }
-      `}
+      query={GET_YELP_RESULT} variables={{ search, location }}
     >
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>;
@@ -32,32 +29,13 @@ const YelpSearch = () => (
           <div key={name}>
             <h6><a className="x" href={`${url}`} target="_blank">{`${name}`}</a>    {`${price}`}  </h6>
            <p> {`${location}`}</p>
-        
-      
              <p> {`${phone} `}</p>
-           
           </div>
         ));
       }}
     </Query>
-  );
+  )
+}
 
-
-
-  const client = new ApolloClient();
-  client
-    .query({
-      query: gql`
-        {
-          yelpSearch(search: "sushi" location: "20011") {
-            name
-            location
-            price
-          }
-        }
-      `
-    })
-    .then(result => console.log(result));
-
-/* **THIS IS THE LAST LINE OF CODE** */ 
+/* **THIS IS THE LAST LINE OF CODE** */
 export default YelpSearch;
