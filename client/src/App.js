@@ -4,11 +4,10 @@ import React, {Component} from 'react';
 import './App.css';
 /*import components*/
 import Home from './components/UserHome/userHome';
-// import components
 import Navbar from './components/Navbar/navbar';
-
-// import MapContainer from '../mapView/mapView';
 import Search from './components/Search/search';
+import landing from './components/Landing/landing';
+
 // import react router deps
 import {Router, Route, Switch} from 'react-router-dom';
 // import { Provider } from 'react-redux'; import store, { history } from
@@ -85,24 +84,25 @@ class App extends Component {
   render() {
     return (
       <div>
+
+     
         <Router history={history}>
           <div>
+          <Route exact path="/" component={landing}/>
             <Route
-              path="/"
+              path="/home"
               render={(props) =>< Navbar auth = {
               auth
             }
             {
               ...props
             } />}/>
-            <h1 className="center-align">
-              Welcome to NightOut
-            </h1>
+     
             {/* <ApolloProvider client={client}>
             <YelpSearch/>
             </ApolloProvider> */}
             <Switch>
-              <Route exact path="/" component={Home}/>
+              <Route exact path="/home" component={Home}/>
               <Route exact path="/search" component={Search}/>
             </Switch>
             <Route

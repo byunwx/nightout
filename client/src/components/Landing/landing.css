@@ -1,0 +1,33 @@
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+}
+
+/* Add some content at the bottom of the video/page */
+.content {
+    position: fixed;
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+
+}
+
+.logo{
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: 250px;
+}
+
+.tagline {
+    font-family: 'Comfortaa', cursive;
+    font-size: 40px;
+}
+
+.login-btn{
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: 40px;
+}
