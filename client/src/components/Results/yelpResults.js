@@ -7,8 +7,7 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo"
 
 const YelpSearch = (search, location) => {
-    const GET_YELP_RESULT = gql`
-query yelpSearch($search: String  $location: String) {
+    const GET_YELP_RESULT = gql`query yelpSearch($search: String  $location: String) {
   yelpSearch(search: $search location: $location) {
     name
     location
