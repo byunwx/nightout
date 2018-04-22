@@ -5,19 +5,9 @@ import "./results.css";
 //apollo dependencies
 import gql from "graphql-tag";
 import { Query } from "react-apollo"
+import {GET_YELP_RESULT} from '../Search/queries'
 
-const YelpSearch = (search, location) => {
-    const GET_YELP_RESULT = gql`query yelpSearch($search: String  $location: String) {
-  yelpSearch(search: $search location: $location) {
-    name
-    location
-    url
-    price
-    phone
-  }
-}
-`
-return (
+const YelpSearch = (search, location) => (
     <Query
       query={GET_YELP_RESULT} variables={{ search, location }}
     >
@@ -34,7 +24,6 @@ return (
       }}
     </Query>
   )
-}
 
 /* **THIS IS THE LAST LINE OF CODE** */
 export default YelpSearch;

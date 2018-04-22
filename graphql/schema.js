@@ -39,22 +39,16 @@ type Query {
     zip: String
   ): [Activity]
   allUsers(
-    name: String
-    email: String
-    password: String
-    zip: Int
+  _id: String
   ): [User!]!,
   getUser(
-    id: String!
+    _id: String!
   ): User!,
   allItineraries(
-    name: String
-    date: String
-    time: String
-    activities: [String]
+    _id: String!
   ): [Itinerary]!,
   getItinerary(
-    id: String!
+    _id: String!
   ): Itinerary!
 }
 

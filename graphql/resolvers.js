@@ -12,11 +12,11 @@ export default {
       })
     },
     getUser: async(root, args, {User}) => {
-      const user = await User.findById(args.id)
+      const user = await User.findById(args._id)
       return user
     },
     allItineraries: async(root, args, {Itinerary}) => {
-      const itineraries = await Itinerary.find(args)
+      const itineraries = await Itinerary.find(args._id)
       return itineraries.map(x => {
         x._id = x
           ._id
@@ -25,7 +25,7 @@ export default {
       })
     },
     getItinerary: async(root, args, {Itinerary}) => {
-      const itinerary = await Itinerary.findById(args.id)
+      const itinerary = await Itinerary.findById(args._id)
       return itinerary
     },
     yelpSearch: async(root, args) => {
@@ -41,16 +41,18 @@ export default {
       const results = await axios(searchObj)
       const restaurants = await results.data.businesses
       return restaurants.map(x => {
-        if (x.location.display_address.length === 2) {
+        if (x.location.display_address.length > 3 ||x.location.display_address.length < 2){
+          x.location = 'Click for details'
+        } else if (x.location.display_address.length === 2) {
           x.location = x
             .location
-            .display_address[0]
+            .display_address[0].concat(' ')
             .concat(x.location.display_address[1])
         } else if (x.location.display_address.length === 3) {
           x.location = x
             .location
-            .display_address[0]
-            .concat(x.location.display_address[1])
+            .display_address[0].concat(' ')
+            .concat(x.location.display_address[1]).concat(' ')
             .concat(x.location.display_address[2])
         }
         x.coordinates = [x.coordinates.latitude, x.coordinates.longitude]
