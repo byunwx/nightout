@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
+import Input from '../Search/input';
 
-import Input from '../Search/input'
 // import the Google Maps API Wrapper from google-maps-react
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 // import child component
@@ -13,6 +13,17 @@ class Container extends Component {
     selectedPlace: {},
     currentLat: 38.9072,
     currentLng:  -77.0369,
+    itineraries:[{
+        name:'woojoo',
+        lat: 38.91,
+        lng: -77,
+        isSelected:false
+      },{
+        name:'byul',
+        lat: 38.92,
+        lng: -77,
+        isSelected:true
+      }]
   }
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -55,8 +66,8 @@ class Container extends Component {
           google={this.props.google}
           style={style}
           initialCenter={{
-            lat: this.state.currentLat,
-            lng: this.state.currentLng
+            lat: 38.9072,
+            lng: -77.0369
           }}
           center={{
             lat: this.state.currentLat,
@@ -65,18 +76,30 @@ class Container extends Component {
           zoom={13}
           onClick={this.onMapClicked}
         >
-          <Marker
-            title={'The marker`s title will appear as a tooltip.'}
-            name={'Current location'}
-            onClick={this.onMarkerClick}
-            position={{lat: 38.9072, lng: -77.0369}} />
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
-              <div>
-                <h1>{this.state.selectedPlace.name}</h1>
-              </div>
-          </InfoWindow>
+        {!this.state.itineraries.length ? (
+            <Marker
+              name={'Nothing selected'}
+              onClick={this.onMarkerClick}
+              position={{lat: 38.9072, lng: -77.0369}} />
+          ) : (this.state.itineraries.map(itinerary => {
+              return (
+                  <Marker
+                    key={itinerary.name}
+                    name={itinerary.name}
+                    onClick={this.onMarkerClick}
+                    position={{lat: itinerary.lat, lng: itinerary.lng}}
+                    icon={{url: "./icon.png"}}
+                  />
+              );
+            }))
+        }
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+        </InfoWindow>
         </Map>
       </div>
     );
