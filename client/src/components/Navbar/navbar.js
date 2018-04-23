@@ -17,8 +17,10 @@ class Navbar extends Component {
   }
     render() {
         const { isAuthenticated } = this.props.auth;
+        console.log(window.location.pathname);
         //checking for auth
         return (
+          window.location.pathname==""||window.location.pathname=="/" ? <div/>:
             <div>
                 <nav>
                     <div className="nav-wrapper">
