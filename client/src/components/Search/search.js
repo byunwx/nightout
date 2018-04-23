@@ -100,21 +100,23 @@ class Search extends Component {
                 this
                   .state
                   .yelpSearch
-                  .map(({name, location, url, price, phone}) => (
-                    <div key={url}>
+                  .map(({_id, name, location, url, price, phone, coordinates}) => (
+                    <div key={_id}>
                       <h6>
-                        <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
+                        <a className="x" href={`${url}`} target="_blank">{`${_id} ${name}`}</a>
                         {` ${price}`}
                       </h6>
                       <p>{`${location}`}</p>
                       <p>{`${phone}`}</p>
                       <div className='btn hoverable' onClick={async ()=>{
                         const itinItem = {
+                          _id: this.state.currentItinerary.length + 1,
                           name: name,
                           location: location,
                           url: url,
                           price: price,
-                          phone: phone
+                          phone: phone,
+                          coordinates: coordinates
                         }
                         await this.setState({currentItinerary: [...this.state.currentItinerary, itinItem]})
                       }}>Add to Itinerary</div>
@@ -124,10 +126,10 @@ class Search extends Component {
             </div>
           <div className="main-content col s12 m3">
             <h2>Itinerary</h2>
-            {this.state.currentItinerary.length > 0 ? this.state.currentItinerary.map(({name, location, url, phone}, i) => (
-                    <div key={url}>
+            {this.state.currentItinerary.length > 0 ? this.state.currentItinerary.map(({_id, name, location, url, phone}, i) => (
+                    <div key={_id}>
                       <h6>
-                        <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
+                        <a className="x" href={`${url}`} target="_blank">{`${_id} ${name}`}</a>
                       </h6>
                       <p>{`${location}`}</p>
                       <p>{`${phone}`}</p>
@@ -142,6 +144,7 @@ class Search extends Component {
             <Modal
               header='Review Itinerary'
               trigger={<Button className="btn-small finalize-btn">Finalize Itinerary</Button>}
+              id='itinModal'
               >
               <Input
                 onChange={this.handleInputChange}
@@ -175,14 +178,14 @@ class Search extends Component {
               ))}
             <Mutation mutation={CREATE_ITINERARY} update={this.updateCache}>
             {createItinerary => (
-            <div
+            <Button
               className="btn-large finalize-btn" onClick={async e => {
                 e.preventDefault()
                 console.log(this.state.currentItinerary)
                  await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary } })
               }}>
               Add to my Itineraries
-            </div>
+            </Button>
             )}
             </Mutation>
             </Modal>

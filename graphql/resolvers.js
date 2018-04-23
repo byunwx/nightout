@@ -40,7 +40,8 @@ export default {
       }
       const results = await axios(searchObj)
       const restaurants = await results.data.businesses
-      return restaurants.map(x => {
+      return restaurants.map((x, i) => {
+        x._id = i + 1
         if (x.location.display_address.length > 3 ||x.location.display_address.length < 2){
           x.location = 'Click for details'
         } else if (x.location.display_address.length === 2) {
