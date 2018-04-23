@@ -16,7 +16,18 @@ class Search extends Component {
     date: '',
     time: '',
     currentItinerary: [],
-    itineraries: []
+    itineraries: [],
+    profile:{}
+  }
+  componentWillMount() {
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
   }
 
   onYelpFetched = x => this.setState({ yelpSearch: x })
@@ -27,6 +38,7 @@ class Search extends Component {
   }
 
   render() {
+    console.log(this.state.profile);
     return (
       <div>
          <video autoPlay muted id="homeVideo">
