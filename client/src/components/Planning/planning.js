@@ -1,6 +1,6 @@
 /*dependencies*/
 import React from "react";
-import "./planning.css";
+
 
 
 
