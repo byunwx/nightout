@@ -30,11 +30,10 @@ class Search extends Component {
                         tabs: upcoming | Planning | Past
                         Render array of itins*/}
         <div className="row">
-          <div className=" col m3 offset-m1">
+          <div className="col m3 offset-m1">
             <div className="row">
-              <p>
-                Search tabs router goes here
-              </p>
+            <h2>Search</h2>
+              <p>Search tabs router goes here</p>
               <form>
                 <Input
                   onChange={this.handleInputChange}
@@ -65,7 +64,6 @@ class Search extends Component {
                   </ApolloConsumer>
                 </ApolloProvider>
               </form>
-
               {/* < SbLocation/>
                             < SbMeal/>
                             < SbEvent/>  <Tabs className="tabs">
@@ -80,9 +78,9 @@ class Search extends Component {
                             </Tab>
                         </Tabs>*/}
             </div>
-            <div className="row">
               {this.state.yelpSearch
-                ? this
+                ?
+                this
                   .state
                   .yelpSearch
                   .map(({name, location, url, price, phone}) => (
@@ -107,19 +105,9 @@ class Search extends Component {
                   ))
                 : 'Results will appear here after you hit search!'}
             </div>
-          </div>
-          <div className="col m7 offset-m1">
-            <div className="row">
-              <MapView/>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-        {this.state.currentItinerary
-                ? this
-                  .state
-                  .currentItinerary
-                  .map(({name, location, url, phone}, i) => (
+          <div className="col m3 offset-m1">
+            <h2>Itinerary</h2>
+            {this.state.currentItinerary.length > 0 ? this.state.currentItinerary.map(({name, location, url, phone}, i) => (
                     <div key={url}>
                       <h6>
                         <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
@@ -132,8 +120,12 @@ class Search extends Component {
                         }))
                       }}>Remove from Itinerary</div>
                     </div>
-                  ))
-                : 'Your Current Itinerary will appear here once you`ve added something to it'}
+            )) : 'Your Current Itinerary will appear here once you`ve added something to it'}
+            </div>
+            <div className="col m3 offset-m1">
+            <h2>Map</h2>
+                    <MapView/>
+          </div>
         </div>
       </div>
     )
