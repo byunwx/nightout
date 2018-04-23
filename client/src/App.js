@@ -96,7 +96,7 @@ class App extends Component {
             )
           )} />
             <Route
-              path="/home"
+              path="/"
               render={(props) =><Navbar auth = {
               auth
             }
