@@ -26,14 +26,14 @@ class Navbar extends Component {
                         <a href="/" className="brand-logo">
                             NightOut
                         </a>
-                            <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-                                <i class="material-icons">
+                            <a href="#" data-target="mobile-demo" className="sidenav-trigger">
+                                <i className="material-icons">
                                     menu
                                 </i>
                             </a>
                         {
                             !isAuthenticated() && (
-                                <ul id="nav-mobile" className="right hide-on-med-and-down">    
+                                <ul id="nav-mobile" className="right hide-on-med-and-down">
                                     <li>
                                         <a onClick={this.login.bind(this)}>Log In</a>
                                     </li>
@@ -41,9 +41,9 @@ class Navbar extends Component {
                             )
                         }
                         {
-                                isAuthenticated() && ( 
-                                <div>    
-                                <ul id="nav-mobile" className="right hide-on-med-and-down">   
+                                isAuthenticated() && (
+                                <div>
+                                <ul id="nav-mobile" className="right hide-on-med-and-down">
                                     <li>
                                             <a href="/search">
                                                 Plan a Date
@@ -60,7 +60,7 @@ class Navbar extends Component {
                                         </a>
                                     </li>
                                 </ul>
-                                
+
                               <ul className="sidenav" id="mobile-demo">
                                 <li>
                                     <a href="/search">
@@ -74,7 +74,7 @@ class Navbar extends Component {
                                     <a onClick={this.logout.bind(this)}>Log Out</a>
                                 </li>
                                         </ul>
-                            </div>            
+                            </div>
                             )
                         }
                     </div>

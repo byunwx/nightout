@@ -11,7 +11,7 @@ type Itinerary {
   name: String
   date: String
   time: String
-  activities: [Activity]
+  activities: [Restaurant]
 }
 type Activity {
   name: String
@@ -29,6 +29,13 @@ type Restaurant {
   phone: String
   coordinates: [Float]
 }
+input RestaurantInput {
+    name: String
+    location: String
+    url: String
+    price: String
+    phone: String
+}
 type Query {
   yelpSearch(
     search: String
@@ -44,9 +51,7 @@ type Query {
   getUser(
     _id: String!
   ): User!,
-  allItineraries(
-    _id: String!
-  ): [Itinerary]!,
+  allItineraries: [Itinerary],
   getItinerary(
     _id: String!
   ): Itinerary!
@@ -63,7 +68,7 @@ type Mutation {
     name: String
     date: String
     time: String
-    activities: [String]
-  ): Itinerary!
+    activities: [RestaurantInput]
+  ): Itinerary
 }
 `

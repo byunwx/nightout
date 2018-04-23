@@ -3,10 +3,9 @@ import React, {Component} from "react";
 import MapView from '../mapView/mapView';
 import Input from './input'
 import { ApolloConsumer } from "react-apollo";
-import {GET_YELP_RESULT} from './queries'
+import {GET_YELP_RESULT, CREATE_ITINERARY, ALL_ITINERARIES} from './queries'
 import {Modal, Button} from 'react-materialize'
-import createItinerary from './itineraryMutation'
-//Right Column Map Itinerary preview yarn install react-mdl for tabs
+import {Mutation} from 'react-apollo'
 
 class Search extends Component {
   state = {
@@ -21,7 +20,6 @@ class Search extends Component {
   }
 
   onYelpFetched = x => this.setState({ yelpSearch: x })
-  onItineraryCreated = x => this.setState({ itineraries: [...this.state.itineraries, x] })
 
   handleInputChange = event => {
     const {name, value} = event.target;
@@ -163,20 +161,20 @@ class Search extends Component {
                   </div>
                 </div>
               ))}
+            <Mutation mutation={CREATE_ITINERARY} update={this.updateCache}>
+            {createItinerary => (
             <div
-              className="btn-large finalize-btn"
-              onClick={()=>(
-               <createItinerary
-               name={this.state.name}
-               date={this.state.date}
-               time={this.state.time}
-               activities={this.state.currentItinerary}
-               />
-              )
-              }>
+              className="btn-large finalize-btn" onClick={async e => {
+                e.preventDefault()
+                console.log(this.state.currentItinerary)
+                 await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary } })
+              }}>
               Add to my Itineraries
             </div>
-            </Modal> : ''}
+            )}
+            </Mutation>
+            </Modal>
+            : ''}
             </div>
             {/* end of Itinerary code */}
             <div className="main-content col s12 m3">
