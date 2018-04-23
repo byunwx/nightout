@@ -55,8 +55,8 @@ class Container extends Component {
           google={this.props.google}
           style={style}
           initialCenter={{
-            lat: this.state.currentLat,
-            lng: this.state.currentLng
+            lat: 38.9072,
+            lng: -77.0369
           }}
           center={{
             lat: this.state.currentLat,
