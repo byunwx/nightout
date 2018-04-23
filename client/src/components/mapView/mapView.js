@@ -34,7 +34,7 @@ class Container extends Component {
       height: '75%' // 75vh similarly will take up roughly 75% of the height of the screen. px also works.
     }
     return (
-      <div className="row" style={style}>
+      <div style={style}>
         {/* <h1> Google Maps API + React </h1> */}
         <Map
           google={this.props.google}
