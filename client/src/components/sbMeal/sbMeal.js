@@ -1,6 +1,6 @@
 /*dependencies*/
 import React, {Component} from "react";
-import "./sbMeal.css";
+
 
 
 

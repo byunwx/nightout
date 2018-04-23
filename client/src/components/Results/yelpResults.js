@@ -1,6 +1,6 @@
 /*dependencies*/
 import React from "react";
-import "./results.css";
+
 
 //apollo dependencies
 import gql from "graphql-tag";

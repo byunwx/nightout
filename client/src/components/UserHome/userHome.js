@@ -1,16 +1,18 @@
 import React, {Component} from "react";
-
-// import components
-
+import { Query } from 'react-apollo'
+import { ALL_ITINERARIES, GET_ITINERARY } from '../Search/queries'
+import ApolloClient from "apollo-boost";
 import Itinerary from '../Itinerary/itinerary';
-// import Search from '../Search/search'; import MapContainer from
-// '../mapView/mapView';
-
+const client = new ApolloClient();
 class Home extends Component {
+    state = {
+        selectedItin: null
+    }
+
     render() {
         return (
             <div>
-  <video autoPlay muted id="homeVideo">
+            <video autoPlay muted id="homeVideo">
                     <source src='http://www.coverr.co/s3/mp4/The-Bowling-Alley.mp4'
                         type="video/mp4" />
                     </video>
@@ -26,23 +28,47 @@ class Home extends Component {
                 </div>
                 <div className="row">
                     <div className="sidebar col s12 m3 offset-m1">
-
-                        <p>
-                            Itinerary tabs router goes here
-                        </p>
-
-                        <p>
-                            Upcoming/planning/past here
-                        </p>
-                        {/* < MapContainer/> */}
+                    <Query query={ALL_ITINERARIES}>
+                        {({ loading, error, data }) => {
+                        if (loading) return <p>Loading...</p>;
+                        if (error) return <p>Error :(</p>;
+                        return data.allItineraries.map(({ _id, name, date, time }) => (
+                            <div key={_id}>
+                            <h6>{`${name}`}</h6>
+                            <p> {`Date: ${date}`}</p>
+                            <p> {`Time: ${time}`}</p>
+                            <a className="btn" onClick={async () => {
+                            const {data} = await client.query({
+                            query: GET_ITINERARY,
+                            variables: {
+                            _id: _id
+                            }
+                            })
+                            this.setState({selectedItin: data.getItinerary})
+                            }}>View Details</a>
+                            </div>
+                        ))}}
+                    </Query>
                     </div>
                     <div className="main-content col s12 m7">
-
-                        <Itinerary/>
+                    {this.state.selectedItin ?
+                    <div>
+                        <h2>Name: {this.state.selectedItin.name}</h2>
+                        <p>Date: {this.state.selectedItin.date}</p>
+                        <p>Time: {this.state.selectedItin.time}</p>
+                        {this.state.selectedItin.activities.map(({name, location, url, phone}) => (
+                            <div key={url}>
+                                <h6>
+                                <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
+                                </h6>
+                                <p>{`${location}`}</p>
+                                <p>{`${phone}`}</p>
+                            </div>))}
+                    </div>
+                    : "Select an Itinerary for more details"}
                     </div>
                 </div>
             </div>
-
         )
     }
 };
