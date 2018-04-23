@@ -2,11 +2,11 @@
 import React, {Component} from "react";
 import "./search.css";
 import MapView from '../mapView/mapView';
-import client from '../Results/client';
 import Input from './input'
-import {ApolloProvider, ApolloConsumer} from "react-apollo";
+import { ApolloConsumer } from "react-apollo";
 import {GET_YELP_RESULT} from './queries'
 import {Modal, Button} from 'react-materialize'
+import createItinerary from './itineraryMutation'
 //Right Column Map Itinerary preview yarn install react-mdl for tabs
 
 class Search extends Component {
@@ -14,10 +14,15 @@ class Search extends Component {
     yelpSearch: null,
     search: '',
     location: '',
-    currentItinerary: []
+    name: '',
+    date: '',
+    time: '',
+    currentItinerary: [],
+    itineraries: []
   }
 
-  onYelpFetched = x => this.setState({yelpSearch: x})
+  onYelpFetched = x => this.setState({ yelpSearch: x })
+  onItineraryCreated = x => this.setState({ itineraries: [...this.state.itineraries, x] })
 
   handleInputChange = event => {
     const {name, value} = event.target;
@@ -44,7 +49,6 @@ class Search extends Component {
                   onChange={this.handleInputChange}
                   name="location"
                   placeholder="Location (Zip, Address, City"/>
-                <ApolloProvider client={client}>
                   <ApolloConsumer>
                     {client => (
                       <div
@@ -63,7 +67,6 @@ class Search extends Component {
                       </div>
                     )}
                   </ApolloConsumer>
-                </ApolloProvider>
               </form>
               {/* < SbLocation/>
                             < SbMeal/>
@@ -122,27 +125,57 @@ class Search extends Component {
                       }}>Remove from Itinerary</div>
                     </div>
             )) : 'Your Current Itinerary will appear here once you`ve added something to it'}
+            {this.state.currentItinerary.length > 0 ?
             <Modal
-              header='Itinerary'
-              trigger={<Button>Finalize Itinerary</Button>}
+              header='Review Itinerary'
+              trigger={<Button className="btn-small finalize-btn">Finalize Itinerary</Button>}
               >
-            {this.state.currentItinerary.map(({name, location, url, phone}, i) => (
-                    <div key={url}>
-                      <h6>
-                        <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
-                      </h6>
-                      <p>{`${location}`}</p>
-                      <p>{`${phone}`}</p>
-                      <div className='btn' onClick={async ()=>{
+              <Input
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="Name your Itinerary"/>
+              <Input
+               onChange={this.handleInputChange}
+               name="date"
+               type="date"
+               placeholder=""/>
+              <Input
+                onChange={this.handleInputChange}
+                name="time"
+                type="time"
+                placeholder=""/>
+              {this.state.currentItinerary.map(({name, location, url, phone}, i) => (
+                <div key={url}>
+                  <h6>
+                    <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
+                  </h6>
+                  <p>{`${location}`}</p>
+                  <p>{`${phone}`}</p>
+                  <div className='btn' onClick={async ()=>{
                         await this.setState((prevState) => ({
                           currentItinerary: prevState.currentItinerary.filter((_, j) => j !== i)
                         }))
-                      }}>Remove from Itinerary</div>
-                    </div>
-            ))}
-            <div className="btn-large">Add to my Itineraries</div>
-            </Modal>
+                      }}>
+                      Remove from Itinerary
+                  </div>
+                </div>
+              ))}
+            <div
+              className="btn-large finalize-btn"
+              onClick={()=>(
+               <createItinerary
+               name={this.state.name}
+               date={this.state.date}
+               time={this.state.time}
+               activities={this.state.currentItinerary}
+               />
+              )
+              }>
+              Add to my Itineraries
             </div>
+            </Modal> : ''}
+            </div>
+            {/* end of Itinerary code */}
             <div className="col m3 offset-m1">
             <h2>Map</h2>
             <MapView/>

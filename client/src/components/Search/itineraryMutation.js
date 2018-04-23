@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+import React, {Component} from "react";
 import {Mutation} from 'react-apollo'
 import {CREATE_ITINERARY} from './queries'
 
