@@ -1,6 +1,5 @@
 /*dependencies*/
 import React, {Component} from "react";
-import "./search.css";
 import MapView from '../mapView/mapView';
 import Input from './input'
 import { ApolloConsumer } from "react-apollo";
@@ -38,12 +37,12 @@ class Search extends Component {
                         tabs: upcoming | Planning | Past
                         Render array of itins*/}
         <div className="row">
-          <div className="sidebar col m3 offset-m1">
+          <div className="sidebar col s12 m3 offset-m1">
             <div className="row">
             <h2>Search</h2>
-              <p>Search tabs router goes here</p>
+              {/* <p>Search tabs router goes here</p> */}
               <form>
-                <Input
+                <Input className="main-content"
                   onChange={this.handleInputChange}
                   name="search"
                   placeholder="Search term"/>
@@ -111,7 +110,7 @@ class Search extends Component {
                   ))
                 : <p>Results will appear here after you hit search!</p>}
             </div>
-          <div className="main-content col m3 offset-m1">
+          <div className="main-content col s12 m3">
             <h2>Itinerary</h2>
             {this.state.currentItinerary.length > 0 ? this.state.currentItinerary.map(({name, location, url, phone}, i) => (
                     <div key={url}>
@@ -149,10 +148,10 @@ class Search extends Component {
               {this.state.currentItinerary.map(({name, location, url, phone}, i) => (
                 <div key={url}>
                   <h6>
-                    <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
+                    <a className="result-name" href={`${url}`} target="_blank">{`${name}`}</a>
                   </h6>
-                  <p>{`${location}`}</p>
-                  <p>{`${phone}`}</p>
+                  <p className="result-body">{`${location}`}</p>
+                  <p className="result-body">{`${phone}`}</p>
                   <div className='btn' onClick={async ()=>{
                         await this.setState((prevState) => ({
                           currentItinerary: prevState.currentItinerary.filter((_, j) => j !== i)
@@ -178,7 +177,7 @@ class Search extends Component {
             : ''}
             </div>
             {/* end of Itinerary code */}
-            <div className="col m3 offset-m1">
+            <div className="main-content col s12 m3">
             <h2>Map</h2>
             <MapView/>
           </div>
