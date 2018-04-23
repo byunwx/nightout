@@ -22,6 +22,7 @@ type Activity {
   seatMap: String
 }
 type Restaurant {
+  _id: Int
   name: String
   location: String
   url: String

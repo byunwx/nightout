@@ -100,16 +100,17 @@ class Search extends Component {
                 this
                   .state
                   .yelpSearch
-                  .map(({name, location, url, price, phone, coordinates}) => (
-                    <div key={url}>
+                  .map(({_id, name, location, url, price, phone, coordinates}) => (
+                    <div key={_id}>
                       <h6>
-                        <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
+                        <a className="x" href={`${url}`} target="_blank">{`${_id} ${name}`}</a>
                         {` ${price}`}
                       </h6>
                       <p>{`${location}`}</p>
                       <p>{`${phone}`}</p>
                       <div className='btn hoverable' onClick={async ()=>{
                         const itinItem = {
+                          _id: this.state.currentItinerary.length + 1,
                           name: name,
                           location: location,
                           url: url,
@@ -125,10 +126,10 @@ class Search extends Component {
             </div>
           <div className="main-content col s12 m3">
             <h2>Itinerary</h2>
-            {this.state.currentItinerary.length > 0 ? this.state.currentItinerary.map(({name, location, url, phone}, i) => (
-                    <div key={url}>
+            {this.state.currentItinerary.length > 0 ? this.state.currentItinerary.map(({_id, name, location, url, phone}, i) => (
+                    <div key={_id}>
                       <h6>
-                        <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
+                        <a className="x" href={`${url}`} target="_blank">{`${_id} ${name}`}</a>
                       </h6>
                       <p>{`${location}`}</p>
                       <p>{`${phone}`}</p>
