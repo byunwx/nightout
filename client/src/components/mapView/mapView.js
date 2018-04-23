@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react';
-import "./mapView.css";
 import Input from '../Search/input';
 
 // import the Google Maps API Wrapper from google-maps-react
