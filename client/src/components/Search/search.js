@@ -32,11 +32,15 @@ class Search extends Component {
   render() {
     return (
       <div>
+         <video autoPlay muted id="homeVideo">
+                    <source src='http://www.coverr.co/s3/mp4/Broadway.mp4'
+                        type="video/mp4" />
+                    </video>
         {/*  Left Column
                         tabs: upcoming | Planning | Past
                         Render array of itins*/}
         <div className="row">
-          <div className="col m3 offset-m1">
+          <div className="sidebar col m3 offset-m1">
             <div className="row">
             <h2>Search</h2>
               <p>Search tabs router goes here</p>
@@ -107,9 +111,9 @@ class Search extends Component {
                       }}>Add to Itinerary</div>
                     </div>
                   ))
-                : 'Results will appear here after you hit search!'}
+                : <p>Results will appear here after you hit search!</p>}
             </div>
-          <div className="col m3 offset-m1">
+          <div className="main-content col m3 offset-m1">
             <h2>Itinerary</h2>
             {this.state.currentItinerary.length > 0 ? this.state.currentItinerary.map(({name, location, url, phone}, i) => (
                     <div key={url}>
@@ -124,7 +128,7 @@ class Search extends Component {
                         }))
                       }}>Remove from Itinerary</div>
                     </div>
-            )) : 'Your Current Itinerary will appear here once you`ve added something to it'}
+            )) : <p>Your Current Itinerary will appear here once you`ve added something to it</p>}
             {this.state.currentItinerary.length > 0 ?
             <Modal
               header='Review Itinerary'

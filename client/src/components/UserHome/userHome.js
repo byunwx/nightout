@@ -10,7 +10,10 @@ class Home extends Component {
     render() {
         return (
             <div>
-
+  <video autoPlay muted id="homeVideo">
+                    <source src='http://www.coverr.co/s3/mp4/The-Bowling-Alley.mp4'
+                        type="video/mp4" />
+                    </video>
                 {/*  Left Column
                     tabs: upcoming | Planning | Past
                     Render array of itins*/}
@@ -22,7 +25,7 @@ class Home extends Component {
                     </button>
                 </div>
                 <div className="row">
-                    <div className=" col m3 offset-m1">
+                    <div className="sidebar col s12 m3 offset-m1">
 
                         <p>
                             Itinerary tabs router goes here
@@ -33,7 +36,7 @@ class Home extends Component {
                         </p>
                         {/* < MapContainer/> */}
                     </div>
-                    <div className=" col m8">
+                    <div className="main-content col s12 m7">
 
                         <Itinerary/>
                     </div>
