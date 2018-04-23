@@ -6,6 +6,7 @@ import client from '../Results/client';
 import Input from './input'
 import {ApolloProvider, ApolloConsumer} from "react-apollo";
 import {GET_YELP_RESULT} from './queries'
+import {Modal, Button} from 'react-materialize'
 //Right Column Map Itinerary preview yarn install react-mdl for tabs
 
 class Search extends Component {
@@ -47,7 +48,7 @@ class Search extends Component {
                   <ApolloConsumer>
                     {client => (
                       <div
-                        className='btn'
+                        className='btn hoverable'
                         onClick={async() => {
                         const {data} = await client.query({
                           query: GET_YELP_RESULT,
@@ -91,7 +92,7 @@ class Search extends Component {
                       </h6>
                       <p>{`${location}`}</p>
                       <p>{`${phone}`}</p>
-                      <div className='btn' onClick={async ()=>{
+                      <div className='btn hoverable' onClick={async ()=>{
                         const itinItem = {
                           name: name,
                           location: location,
@@ -121,10 +122,30 @@ class Search extends Component {
                       }}>Remove from Itinerary</div>
                     </div>
             )) : 'Your Current Itinerary will appear here once you`ve added something to it'}
+            <Modal
+              header='Itinerary'
+              trigger={<Button>Finalize Itinerary</Button>}
+              >
+            {this.state.currentItinerary.map(({name, location, url, phone}, i) => (
+                    <div key={url}>
+                      <h6>
+                        <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
+                      </h6>
+                      <p>{`${location}`}</p>
+                      <p>{`${phone}`}</p>
+                      <div className='btn' onClick={async ()=>{
+                        await this.setState((prevState) => ({
+                          currentItinerary: prevState.currentItinerary.filter((_, j) => j !== i)
+                        }))
+                      }}>Remove from Itinerary</div>
+                    </div>
+            ))}
+            <div className="btn-large">Add to my Itineraries</div>
+            </Modal>
             </div>
             <div className="col m3 offset-m1">
             <h2>Map</h2>
-                    <MapView/>
+            <MapView/>
           </div>
         </div>
       </div>
