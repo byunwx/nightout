@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import Input from '../Search/input';
-
 // import the Google Maps API Wrapper from google-maps-react
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 // import child component
@@ -13,17 +12,16 @@ class Container extends Component {
     selectedPlace: {},
     currentLat: 38.9072,
     currentLng:  -77.0369,
-    itineraries:[{
-        name:'woojoo',
-        lat: 38.91,
-        lng: -77,
-        isSelected:false
-      },{
-        name:'byul',
-        lat: 38.92,
-        lng: -77,
-        isSelected:true
-      }]
+    yelpSearch:null,
+    currentItinerary:[]
+  }
+  componentWillReceiveProps() {
+    const { yelpSearch, currentItinerary } = this.props;
+    this.setState({
+      yelpSearch: yelpSearch,
+      currentItinerary:currentItinerary
+    });
+    this.state.yelpSearch ? this.reCenter():console.log("wait")
   }
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -40,28 +38,19 @@ class Container extends Component {
       })
     }
   };
-  handleInputChange = event => {
-    const {name, value} = event.target;
-    this.setState({[name]: value});
+  reCenter=()=>{
+    this.setState({
+      currentLat: this.state.yelpSearch[0].coordinates[0],
+      currentLng: this.state.yelpSearch[0].coordinates[1],
+    })
   }
   render() {
-    const style = { // MUST specify dimensions of the Google map or it will not work. Also works best when style is specified inside the render function and created as an object
-      width: '40%', // 90vw basically means take up 90% of the width screen. px also works.
-      height: '75%' // 75vh similarly will take up roughly 75% of the height of the screen. px also works.
+    const style = {
+      width: '40%',
+      height: '75%'
     }
     return (
       <div style={style}>
-        {/* <h1> Google Maps API + React </h1> */}
-        <form>
-          <Input
-            onChange={this.handleInputChange}
-            name="currentLat"
-            placeholder="38.9072"/>
-          <Input
-            onChange={this.handleInputChange}
-            name="currentLng"
-            placeholder="-77.0369"/>
-        </form>
         <Map
           google={this.props.google}
           style={style}
@@ -76,19 +65,18 @@ class Container extends Component {
           zoom={13}
           onClick={this.onMapClicked}
         >
-        {!this.state.itineraries.length ? (
+        {!this.state.yelpSearch ? (
             <Marker
               name={'Nothing selected'}
               onClick={this.onMarkerClick}
               position={{lat: 38.9072, lng: -77.0369}} />
-          ) : (this.state.itineraries.map(itinerary => {
+          ) : (this.state.yelpSearch.map(yelpSearch => {
               return (
                   <Marker
-                    key={itinerary.name}
-                    name={itinerary.name}
+                    key={yelpSearch.name}
+                    name={yelpSearch.name}
                     onClick={this.onMarkerClick}
-                    position={{lat: itinerary.lat, lng: itinerary.lng}}
-                    icon={{url: "./icon.png"}}
+                    position={{lat: yelpSearch.coordinates[0], lng: yelpSearch.coordinates[1]}}
                   />
               );
             }))

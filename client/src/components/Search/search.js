@@ -35,10 +35,10 @@ class Search extends Component {
   handleInputChange = event => {
     const {name, value} = event.target;
     this.setState({[name]: value});
+    console.log(this.state.yelpSearch);
   }
 
   render() {
-    console.log(this.state.profile);
     return (
       <div>
          <video autoPlay muted id="homeVideo">
@@ -100,7 +100,7 @@ class Search extends Component {
                 this
                   .state
                   .yelpSearch
-                  .map(({name, location, url, price, phone, coordinates}) => (
+                  .map(({name, location, url, price, phone}) => (
                     <div key={url}>
                       <h6>
                         <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
@@ -114,8 +114,7 @@ class Search extends Component {
                           location: location,
                           url: url,
                           price: price,
-                          phone: phone,
-                          coordinates: coordinates
+                          phone: phone
                         }
                         await this.setState({currentItinerary: [...this.state.currentItinerary, itinItem]})
                       }}>Add to Itinerary</div>
@@ -138,7 +137,7 @@ class Search extends Component {
                         }))
                       }}>Remove from Itinerary</div>
                     </div>
-            )) : <p>Your Current Itinerary will appear here once you`ve added something to it</p>}
+            )) : <p>Your Current Itinerary will appear here once you've added something to it</p>}
             {this.state.currentItinerary.length > 0 ?
             <Modal
               header='Review Itinerary'
@@ -193,7 +192,7 @@ class Search extends Component {
             {/* end of Itinerary code */}
             <div className="main-content col s12 m3">
             <h2>Map</h2>
-            <MapView/>
+            <MapView yelpSearch={this.state.yelpSearch} currentItinerary={this.state.currentItinerary}/>
           </div>
         </div>
       </div>
