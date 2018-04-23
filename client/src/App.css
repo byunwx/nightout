@@ -1,6 +1,8 @@
-
 /* Style the video: 100% width and height to cover the entire window */
+body{
+  background: #304a65;
 
+}
 #myVideo {
   position: fixed;
   right: 0;
@@ -31,7 +33,7 @@
 
 .login-btn{
 
-  background-color:rgb(205,107,75);
+  background: #54727d;
   padding-right: 15px;
   padding-left: 15px;
   margin: center;
@@ -45,13 +47,14 @@
 
 .search-btn{
 
-  background-color:rgb(205,107,75);
-  padding: 40px;
+  background: #72798100;
+  padding: 10px;
   margin: center;
   margin: 30px;
   font-family: 'Comfortaa', cursive;
   font-size: 30px;
-  color: rgb(50, 38, 66);
+  color: #d39391;
+  border:none;
   /* text-decoration: none; */
 }
 
@@ -59,10 +62,48 @@
 
   font-family: 'Comfortaa', cursive;
   font-size: 30px;
-  color: rgb(50, 38, 66);
+  color: #ffb2af;
+  font-weight: 900;
+
 
 }
 p, a, h2 {
+  
   font-family: 'Comfortaa', cursive;
-  color: rgb(50, 38, 66);
+  color: rgb(253, 242, 255);
+}
+
+nav{
+  background: #54727dbb;
+
+}
+
+#homeVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  z-index: -4;
+}
+
+.sidebar{
+  background: #54727dbb;
+  margin: 20px;
+}
+
+.main-content{
+  background: #54727dbb;
+  margin: 20px;
+
+}
+
+.search-sidebar{
+  background: #bd96d3bb;
+  margin: 20px;
+}
+
+.search-main-content{
+  background: #bd96d3bb;
+  margin: 20px;
 }

@@ -13,14 +13,17 @@ query allItineraries($_id: String) {
     allItineraries(_id: $_id) {
         name
         date
+        time
         activities
     }
 }
 `
 const CREATE_ITINERARY = gql`
-mutation createItinerary($name: String $activities: [String]) {
-createItinerary(name: $name activities: $activities) {
+mutation createItinerary($name: String $date: String $time: String $activities: [String]) {
+createItinerary(name: $name date: $date time: $time activities: $activities) {
     name
+    date
+    time
     activities
 }
 }

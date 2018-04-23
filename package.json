@@ -1,5 +1,5 @@
 {
-  "name": "mern",
+  "name": "NightOut",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byunwx/mern.git"
+    "url": "git+https://github.com/byunwx/nightout.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/byunwx/mern/issues"
+    "url": "https://github.com/byunwx/nightout/issues"
   },
-  "homepage": "https://github.com/byunwx/mern#readme",
+  "homepage": "https://github.com/byunwx/nightout#readme",
   "dependencies": {
     "apollo-boost": "^0.1.4",
     "apollo-server-express": "^1.3.4",
@@ -32,6 +32,7 @@
     "mongoose": "^5.0.15",
     "path": "^0.12.7",
     "react-apollo": "^2.1.3",
+    "react-materialize": "^2.2.0",
     "redux": "^4.0.0"
   },
   "devDependencies": {

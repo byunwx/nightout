@@ -18,41 +18,9 @@ import Auth from './Auth/Auth';
 import history from './history';
 
 // Apollo Client Config
-// import ApolloClient from "apollo-boost";
-// import gql from "graphql-tag";
-// import { ApolloProvider } from "react-apollo";
-// import { Query } from "react-apollo";
-
-// const YelpSearch = () => (
-//   <Query
-//     query={gql`
-//       {
-//         yelpSearch(search: "sushi" location: "20011") {
-//           name
-//           location
-//           url
-//           price
-//           phone
-//         }
-//       }
-//     `}
-//   >
-//     {({ loading, error, data }) => {
-//       if (loading) return <p>Loading...</p>;
-//       if (error) return <p>Error :(</p>;
-//       return data.yelpSearch.map(({ name, location, url, price, phone }) => (
-//         <div key={name}>
-//           <p>{`${name}
-//           ${location}
-//           ${url}
-//           ${price}
-//           ${phone}
-//           `}</p>
-//         </div>
-//       ));
-//     }}
-//   </Query>
-// );
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+const client = new ApolloClient();
 
 //auth0 stuff
 const auth = new Auth();
@@ -63,29 +31,11 @@ const handleAuthentication = ({location}) => {
   }
 }
 //autho0 handler
-
-// const client = new ApolloClient();
-// client
-//   .query({
-//     query: gql`
-//       {
-//         yelpSearch(search: "sushi" location: "20011") {
-//           name
-//           location
-//           price
-//         }
-//       }
-//     `
-//   })
-//   .then(result => console.log(result));
-
-
 class App extends Component {
   render() {
     return (
       <div>
-
-
+        <ApolloProvider client={client}>
         <Router history={history}>
           <div>
           <Route exact path="/" render={(props) =>(
@@ -131,16 +81,10 @@ class App extends Component {
             }}/>
           </div>
         </Router>
+        </ApolloProvider>
       </div>
     );
   }
 }
-
-// class App extends Component {   render() {     return (       <div
-// className="App">         <div className="App-header">           {/* <img
-// src={logo} className="App-logo" alt="logo" /> */}           <h2>Welcome to
-// React</h2>         </div>         <p className="App-intro">           To get
-// started, edit <code>src/App.js</code> and save to reload.         </p> </div>
-//     );   } }
 
 export default App;
