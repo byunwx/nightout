@@ -12,14 +12,12 @@ class Container extends Component {
     selectedPlace: {},
     currentLat: 38.9072,
     currentLng:  -77.0369,
-    yelpSearch:null,
-    currentItinerary:[]
+    yelpSearch:null
   }
   componentWillReceiveProps() {
-    const { yelpSearch, currentItinerary } = this.props;
+    const { yelpSearch } = this.props;
     this.setState({
       yelpSearch: yelpSearch,
-      currentItinerary:currentItinerary
     });
     this.state.yelpSearch ? this.reCenter():console.log("wait")
   }
@@ -76,6 +74,7 @@ class Container extends Component {
                     key={yelpSearch.name}
                     name={yelpSearch.name}
                     onClick={this.onMarkerClick}
+                    label={yelpSearch.name}
                     position={{lat: yelpSearch.coordinates[0], lng: yelpSearch.coordinates[1]}}
                   />
               );
