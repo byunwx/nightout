@@ -50,6 +50,7 @@ createItinerary(name: $name date: $date time: $time activities: $activities) {
 
 const GET_YELP_RESULT = gql`query yelpSearch($search: String  $location: String) {
     yelpSearch(search: $search location: $location) {
+      _id
       name
       location
       url
