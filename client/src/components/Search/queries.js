@@ -1,9 +1,17 @@
 import gql from 'graphql-tag'
 
 const GET_ITINERARY = gql`
-query getItinerary($_id: String) {
+query getItinerary($_id: String!) {
     getItinerary(_id: $_id) {
-        Itinerary
+            name
+            date
+            time
+            activities {
+              name
+              location
+              url
+              phone
+        }
     }
 }
 `
@@ -11,6 +19,7 @@ query getItinerary($_id: String) {
 const ALL_ITINERARIES = gql`
 query allItineraries {
     allItineraries {
+        _id
         name
         date
         time
