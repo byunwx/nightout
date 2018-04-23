@@ -35,6 +35,7 @@ input RestaurantInput {
     url: String
     price: String
     phone: String
+    coordinates: [Float]
 }
 type Query {
   yelpSearch(

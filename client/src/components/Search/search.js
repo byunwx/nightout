@@ -143,6 +143,7 @@ class Search extends Component {
             <Modal
               header='Review Itinerary'
               trigger={<Button className="btn-small finalize-btn">Finalize Itinerary</Button>}
+              id='itinModal'
               >
               <Input
                 onChange={this.handleInputChange}
@@ -176,14 +177,14 @@ class Search extends Component {
               ))}
             <Mutation mutation={CREATE_ITINERARY} update={this.updateCache}>
             {createItinerary => (
-            <div
+            <Button
               className="btn-large finalize-btn" onClick={async e => {
                 e.preventDefault()
                 console.log(this.state.currentItinerary)
                  await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary } })
               }}>
               Add to my Itineraries
-            </div>
+            </Button>
             )}
             </Mutation>
             </Modal>
