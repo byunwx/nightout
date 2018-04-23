@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import "./mapView.css";
+import Input from '../Search/input'
 // import the Google Maps API Wrapper from google-maps-react
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 // import child component
@@ -28,6 +29,10 @@ class Container extends Component {
       })
     }
   };
+  handleInputChange = event => {
+    const {name, value} = event.target;
+    this.setState({[name]: value});
+  }
   render() {
     const style = { // MUST specify dimensions of the Google map or it will not work. Also works best when style is specified inside the render function and created as an object
       width: '40%', // 90vw basically means take up 90% of the width screen. px also works.
@@ -36,10 +41,24 @@ class Container extends Component {
     return (
       <div className="row" style={style}>
         {/* <h1> Google Maps API + React </h1> */}
+        <form>
+          <Input
+            onChange={this.handleInputChange}
+            name="currentLat"
+            placeholder="38.9072"/>
+          <Input
+            onChange={this.handleInputChange}
+            name="currentLng"
+            placeholder="-77.0369"/>
+        </form>
         <Map
           google={this.props.google}
           style={style}
           initialCenter={{
+            lat: this.state.currentLat,
+            lng: this.state.currentLng
+          }}
+          center={{
             lat: this.state.currentLat,
             lng: this.state.currentLng
           }}

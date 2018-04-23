@@ -4,8 +4,16 @@ import "./landing.css";
 import "./landingvideo.mp4";
 
 
+
 class landing extends Component {
+
+  login() {
+    this.props.auth.login();
+  }
+
     render() {
+      const { isAuthenticated } = this.props.auth;
+      //checking for auth
         return (
             <div>
             <video autoPlay muted loop id="myVideo">
@@ -21,7 +29,7 @@ class landing extends Component {
             <h1 className="logo">Let's Go Out</h1>
                     <h3 className="tagline">planning a perfect night has never been so easy</h3>
 
-                    <a href="/home">
+                    <a onClick={this.login.bind(this)}>
                         <button className="waves-effect waves-light btn-large login-btn">
                             <h6>
                                 Log In
