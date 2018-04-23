@@ -100,7 +100,7 @@ class Search extends Component {
                 this
                   .state
                   .yelpSearch
-                  .map(({name, location, url, price, phone}) => (
+                  .map(({name, location, url, price, phone, coordinates}) => (
                     <div key={url}>
                       <h6>
                         <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
@@ -114,7 +114,8 @@ class Search extends Component {
                           location: location,
                           url: url,
                           price: price,
-                          phone: phone
+                          phone: phone,
+                          coordinates: coordinates
                         }
                         await this.setState({currentItinerary: [...this.state.currentItinerary, itinItem]})
                       }}>Add to Itinerary</div>

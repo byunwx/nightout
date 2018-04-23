@@ -55,6 +55,7 @@ const GET_YELP_RESULT = gql`query yelpSearch($search: String  $location: String)
       url
       price
       phone
+      coordinates
     }
   }
   `
