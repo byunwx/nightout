@@ -1,7 +1,5 @@
 /*dependencies*/
 import React, {Component} from "react";
-import "./sbLocation.css";
-
 
 
 

@@ -1,6 +1,5 @@
 /*dependencies*/
 import React from "react";
-import "./new.css";
 
 
 

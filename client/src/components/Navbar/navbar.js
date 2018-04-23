@@ -1,6 +1,6 @@
 /*dependencies*/
 import React, { Component } from "react";
-import "./navbar.css";
+
 
 class Navbar extends Component {
   goTo(route) {
@@ -26,34 +26,55 @@ class Navbar extends Component {
                         <a href="/" className="brand-logo">
                             NightOut
                         </a>
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                                <i class="material-icons">
+                                    menu
+                                </i>
+                            </a>
                         {
-                          !isAuthenticated() && (
-                            <ul className="right hide-on-med-and-down">
-                                <li>
-                                    <a onClick={this.login.bind(this)}>Log In</a>
-                                </li>
-                            </ul>
+                            !isAuthenticated() && (
+                                <ul id="nav-mobile" className="right hide-on-med-and-down">    
+                                    <li>
+                                        <a onClick={this.login.bind(this)}>Log In</a>
+                                    </li>
+                                </ul>
                             )
                         }
                         {
-                          isAuthenticated() && (
-                            <ul className="right hide-on-med-and-down">
+                                isAuthenticated() && ( 
+                                <div>    
+                                <ul id="nav-mobile" className="right hide-on-med-and-down">   
+                                    <li>
+                                            <a href="/search">
+                                                Plan a Date
+                                            </a>
+                                    </li>
+                                    <li>
+                                        <a href="/home">
+                                            See your Planned Dates
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a onClick={this.logout.bind(this)}>
+                                            Log Out
+                                        </a>
+                                    </li>
+                                </ul>
+                                
+                              <ul className="sidenav" id="mobile-demo">
                                 <li>
-                                    <a href="/search">New</a>
+                                    <a href="/search">
+                                        New
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="">Upcoming</a>
-                                </li>
-                                <li>
-                                    <a href="">Planning</a>
-                                </li>
-                                <li>
-                                    <a href="">Past</a>
+                                    <a href="/home">See your Planned Dates</a>
                                 </li>
                                 <li>
                                     <a onClick={this.logout.bind(this)}>Log Out</a>
                                 </li>
-                            </ul>
+                                        </ul>
+                            </div>            
                             )
                         }
                     </div>

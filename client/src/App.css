@@ -26,10 +26,58 @@ body{
   font-size: 250px;
 }
 
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+  .logo{
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: 20px;
+  }
+}
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+  .logo{
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: 40px;
+  }
+
+}
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 1199px) { 
+  .logo{
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: 70px;
+  }
+}
+
+
 .tagline {
   font-family: 'Comfortaa', cursive;
   font-size: 40px;
 }
+
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+  .tagline {
+
+    font-size: 20px;
+  }
+}
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+  .tagline {
+
+    font-size: 40px;
+  }
+
+}
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 1199px) { 
+  .tagline {
+
+    font-size: 40px;
+  }
+}
+
 
 .login-btn{
 
@@ -72,6 +120,10 @@ p, a, h2 {
   font-family: 'Comfortaa', cursive;
   color: rgb(253, 242, 255);
 }
+input, select, textarea{
+  font-family: 'Comfortaa', cursive;
+  color: rgb(253, 242, 255);
+}
 
 nav{
   background: #54727dbb;
@@ -92,8 +144,11 @@ nav{
   margin: 20px;
 }
 
+form{
+  padding:25px;
+}
 .main-content{
-  background: #54727dbb;
+  background: #54727dd0;
   margin: 20px;
 
 }
@@ -106,4 +161,16 @@ nav{
 .search-main-content{
   background: #bd96d3bb;
   margin: 20px;
+}
+
+
+/* Modal Styling */
+
+.result-name{
+color: rgb(68, 21, 114);
+font-weight: 900;
+}
+
+.result-body{
+  color: rgb(61, 69, 141)
 }

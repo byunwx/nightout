@@ -1,6 +1,6 @@
 /*dependencies*/
 import React, {Component} from "react";
-import "./itinerary.css";
+
 
 class Itinerary extends Component {
     render() {
@@ -10,7 +10,7 @@ class Itinerary extends Component {
                     Sample Itinerary
                 </h2>
                 <div className="row">
-                    <div className="col m2 ">
+                    <div className="col m2 offset-m2">
                         <p>
                             7:00 PM
                         </p>
