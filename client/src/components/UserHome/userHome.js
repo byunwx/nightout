@@ -12,20 +12,20 @@ class Home extends Component {
         return (
             <div>
             <video autoPlay muted id="homeVideo">
-                    <source src='http://www.coverr.co/s3/mp4/The-Bowling-Alley.mp4'
+                    <source src='http://www.coverr.co/s3/mp4/Broadway.mp4'
                         type="video/mp4" />
                     </video>
                 {/*  Left Column
                     tabs: upcoming | Planning | Past
                     Render array of itins*/}
                 <div className="center-align">
-                    <button className=" search-btn">
-                        <a href="/search">
+                    <button className=" search-btn waves-effect waves-light">
+                        <a href="/search"  >
                             Plan Your Next Date
                         </a>
                     </button>
                 </div>
-                <div className="row">
+                <div className="row container content">
                     <div className="sidebar col s12 m3 offset-m1">
                     <Query query={ALL_ITINERARIES}>
                         {({ loading, error, data }) => {

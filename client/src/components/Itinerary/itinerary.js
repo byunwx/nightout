@@ -10,9 +10,9 @@ const Itinerary = () => (
     if (error) return <p>Error :(</p>;
     return data.allItineraries[2].activities.map(({ name, location, url, phone }) => (
     <div key={url}>
-      <h6><a className="x" href={`${url}`} target="_blank">{`${name}`}</a></h6>
-     <p> {`${location}`}</p>
-       <p> {`${phone} `}</p>
+      <h6><a className="result-name" href={`${url}`} target="_blank">{`${name}`}</a></h6>
+     <p className="result-body"> {`${location}`}</p>
+       <p className="result-body"> {`${phone} `}</p>
     </div>
   )
 )}
