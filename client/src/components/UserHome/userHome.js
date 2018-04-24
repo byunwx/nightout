@@ -11,7 +11,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-            <video autoPlay muted id="homeVideo">
+            <video className="hide-on-med-and-down" autoPlay muted id="homeVideo">
                     <source src='http://www.coverr.co/s3/mp4/Broadway.mp4'
                         type="video/mp4" />
                     </video>
@@ -33,10 +33,10 @@ class Home extends Component {
                         if (error) return <p>Error :(</p>;
                         return data.allItineraries.map(({ _id, name, date, time }) => (
                             <div key={_id}>
-                            <h6>{`${name}`}</h6>
+                            <p className="title">{`${name}`}</p>
                             <p> {`Date: ${date}`}</p>
                             <p> {`Time: ${time}`}</p>
-                            <a className="btn" onClick={async () => {
+                            <a className="btn-small" onClick={async () => {
                             const {data} = await client.query({
                             query: GET_ITINERARY,
                             variables: {
@@ -52,16 +52,19 @@ class Home extends Component {
                     <div className="main-content col s12 m7">
                     {this.state.selectedItin ?
                     <div>
-                        <h2>Name: {this.state.selectedItin.name}</h2>
-                        <p>Date: {this.state.selectedItin.date}</p>
-                        <p>Time: {this.state.selectedItin.time}</p>
+                        <h4>{this.state.selectedItin.name}</h4>
+                        <p className= "center-align">Date: {this.state.selectedItin.date}
+                                {"   "}
+                                Time: {this.state.selectedItin.time}</p>
                         {this.state.selectedItin.activities.map(({name, location, url, phone}) => (
                             <div key={url}>
-                                <h6>
-                                <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
-                                </h6>
-                                <p>{`${location}`}</p>
-                                <p>{`${phone}`}</p>
+                                <h5>
+                                <a className="" href={`${url}`} target="_blank">{`${name}`}</a>
+                                        </h5>
+                                <div className="row">        
+                                <p className="col offset-s1">{`${location}`}</p>
+                                            <p className="col offset-s1">{`${phone}`}</p>
+                                </div>            
                             </div>))}
                     </div>
                     : <p>Select an Itinerary for more details</p>}
