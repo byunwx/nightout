@@ -68,18 +68,19 @@ class Container extends Component {
           onClick={this.onMapClicked}
         >
         {!this.state.yelpSearch ? (
-            <Marker
-              name={'Nothing selected'}
+            <Marker 
+           
+              name={<p  className="map-body"  >Nothing selected</p>}
               onClick={this.onMarkerClick}
               position={{lat: 38.9072, lng: -77.0369}} />
           ) : (this.state.yelpSearch.map(({_id, name, location, url, price, phone, coordinates}) => {
               return (
-                  <Marker
+                <Marker
                     key={`${_id}`}
-                    name={`${name}`}
-                    phone={`${phone}`}
-                    location={`${location}`}
-                    url={`${url}`}
+                    name={<p  className="map-body"  >${name}</p>}
+                    phone={<p  className="map-body"  >${phone}</p>}
+                    location={<p  className="map-body"  >${location}</p>}
+                    url={<p  className="map-body"  >${url}</p>}
                     onClick={this.onMarkerClick}
                     label={`${_id}`}
                     position={{lat: `${coordinates[0]}`, lng: `${coordinates[1]}`}}
