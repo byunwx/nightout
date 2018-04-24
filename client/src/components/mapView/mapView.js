@@ -19,7 +19,6 @@ class Container extends Component {
     this.setState({
       yelpSearch: yelpSearch,
     });
-    console.log(this.state.yelpSearch);
     this.state.yelpSearch ? this.reCenter():console.log("wait")
   }
   onMarkerClick = (props, marker, e) =>
@@ -72,7 +71,7 @@ class Container extends Component {
           ) : (this.state.yelpSearch.map(({_id, name, location, url, price, phone, coordinates}) => {
               return (
                   <Marker
-                    key={`${name}`}
+                    key={`${_id}`}
                     name={`${name}`}
                     phone={`${phone}`}
                     location={`${location}`}

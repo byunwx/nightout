@@ -36,7 +36,6 @@ class Search extends Component {
   handleInputChange = event => {
     const {name, value} = event.target;
     this.setState({[name]: value});
-    console.log(this.state.yelpSearch);
   }
 
   render() {
@@ -177,13 +176,27 @@ class Search extends Component {
                   </div>
                 </div>
               ))}
-            <Mutation mutation={CREATE_ITINERARY} update={this.updateCache}>
-            {createItinerary => (
+            <Mutation mutation={CREATE_ITINERARY}
+            onCompleted={(data)=>{
+            const activities = data.createItinerary.activities.map(x => JSON.stringify(x, null, 2))
+            alert(`Itinerary Created!
+            Name: ${data.createItinerary.name}
+            Date: ${data.createItinerary.date}
+            Time: ${data.createItinerary.time}
+            Activities: ${activities}
+            `)}}
+            >
+            {(createItinerary, error) => (
             <Button
               className="btn-large finalize-btn" onClick={async e => {
                 e.preventDefault()
-                console.log(this.state.currentItinerary)
-                 await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary } })
+                if (this.state.name === '' || this.state.date === '' || this.state.time === '' || this.state.currentItinerary.length === 0) {
+                  return alert('Please fill out all fields')
+                }
+                await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary }})
+                if (error.error !== undefined) {
+                  console.log(error.error)
+                }
               }}>
               Add to my Itineraries
             </Button>
