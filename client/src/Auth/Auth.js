@@ -6,7 +6,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'byunwx.auth0.com',
     clientID: 'lpKCUvF2MzJrGnuHY6sdrW7VIlXdJAJf',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'http://datenightout.herokuapp.com/callback',
     audience: 'https://byunwx.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid profile'
