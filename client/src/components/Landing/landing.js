@@ -1,5 +1,6 @@
 /*dependencies*/
 import React, { Component } from "react";
+
 import "./landingvideo.mp4";
 
 
@@ -24,7 +25,7 @@ class landing extends Component {
   </video>
 
 
-          <div className="content center-align">
+          <div className="video-content center-align">
             <h1 className="logo">Let's Go Out</h1>
                     <h3 className="tagline">planning a perfect night has never been so easy</h3>
 

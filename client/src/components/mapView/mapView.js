@@ -45,12 +45,12 @@ class Container extends Component {
   }
   render() {
     const style = {
-      width: '40%',
-      height: '75%'
+      width: '38%',
+      height: '70%'
     }
     return (
-      <div style={style}>
-        <Map
+      <div style={style} className="sidebar">
+        <Map 
           google={this.props.google}
           style={style}
           initialCenter={{
