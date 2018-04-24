@@ -35,7 +35,7 @@ class Container extends Component {
       })
     }
   };
-  
+
   reCenter = () => {
     this.setState({
       currentLat: this.state.yelpSearch[0].coordinates[0],
@@ -68,8 +68,8 @@ class Container extends Component {
           onClick={this.onMapClicked}
         >
         {!this.state.yelpSearch ? (
-            <Marker 
-           
+            <Marker
+
               name={<p  className="map-body"  >Nothing selected</p>}
               onClick={this.onMarkerClick}
               position={{lat: 38.9072, lng: -77.0369}} />
@@ -77,10 +77,10 @@ class Container extends Component {
               return (
                 <Marker
                     key={`${_id}`}
-                    name={<p  className="map-body"  >${name}</p>}
-                    phone={<p  className="map-body"  >${phone}</p>}
-                    location={<p  className="map-body"  >${location}</p>}
-                    url={<p  className="map-body"  >${url}</p>}
+                    name={<p  className="map-body"  >{name}</p>}
+                    phone={<p  className="map-body"  >{phone}</p>}
+                    location={<p  className="map-body"  >{location}</p>}
+                    url={<p  className="map-body"  >{url}</p>}
                     onClick={this.onMarkerClick}
                     label={`${_id}`}
                     position={{lat: `${coordinates[0]}`, lng: `${coordinates[1]}`}}
