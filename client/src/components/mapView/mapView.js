@@ -19,7 +19,6 @@ class Container extends Component {
     this.setState({
       yelpSearch: yelpSearch,
     });
-    console.log(this.state.yelpSearch);
   }
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -36,12 +35,15 @@ class Container extends Component {
       })
     }
   };
+  
   reCenter = () => {
     this.setState({
       currentLat: this.state.yelpSearch[0].coordinates[0],
       currentLng: this.state.yelpSearch[0].coordinates[1]
     })
   }
+
+
   render() {
     this.state.yelpSearch && this.state.currentLat!=this.state.yelpSearch[0].coordinates[0] && this.state.currentLng!=this.state.yelpSearch[0].coordinates[1] ? this.reCenter():console.log("wait");
     const style = {
@@ -51,6 +53,7 @@ class Container extends Component {
     return (
       <div style={style} className="sidebar">
         <Map
+          on
           google={this.props.google}
           style={style}
           initialCenter={{
