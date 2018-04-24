@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+ 
 export default {
   Query : {
     allUsers: async(root, args, {User}) => {

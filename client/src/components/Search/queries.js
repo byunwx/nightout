@@ -33,11 +33,12 @@ query allItineraries($userauth: String) {
 }
 `
 const CREATE_ITINERARY = gql`
-mutation createItinerary($name: String $date: String $time: String $activities: [RestaurantInput]) {
-createItinerary(name: $name date: $date time: $time activities: $activities) {
+mutation createItinerary($name: String $date: String $time: String $activities: [RestaurantInput] $userauth: String) {
+createItinerary(name: $name date: $date time: $time activities: $activities userauth: $userauth) {
     name
     date
     time
+    userauth
     activities{
         name
         location
