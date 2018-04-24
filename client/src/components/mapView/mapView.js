@@ -12,15 +12,14 @@ class Container extends Component {
     selectedPlace: {},
     currentLat: 38.9072,
     currentLng:  -77.0369,
-    yelpSearch:null,
-    currentItinerary:[]
+    yelpSearch:null
   }
   componentWillReceiveProps() {
-    const { yelpSearch, currentItinerary } = this.props;
+    const { yelpSearch } = this.props;
     this.setState({
       yelpSearch: yelpSearch,
-      currentItinerary:currentItinerary
     });
+    console.log(this.state.yelpSearch);
     this.state.yelpSearch ? this.reCenter():console.log("wait")
   }
   onMarkerClick = (props, marker, e) =>
@@ -70,13 +69,17 @@ class Container extends Component {
               name={'Nothing selected'}
               onClick={this.onMarkerClick}
               position={{lat: 38.9072, lng: -77.0369}} />
-          ) : (this.state.yelpSearch.map(yelpSearch => {
+          ) : (this.state.yelpSearch.map(({_id, name, location, url, price, phone, coordinates}) => {
               return (
                   <Marker
-                    key={yelpSearch.name}
-                    name={yelpSearch.name}
+                    key={`${name}`}
+                    name={`${name}`}
+                    phone={`${phone}`}
+                    location={`${location}`}
+                    url={`${url}`}
                     onClick={this.onMarkerClick}
-                    position={{lat: yelpSearch.coordinates[0], lng: yelpSearch.coordinates[1]}}
+                    label={`${_id}`}
+                    position={{lat: `${coordinates[0]}`, lng: `${coordinates[1]}`}}
                   />
               );
             }))
@@ -85,7 +88,11 @@ class Container extends Component {
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
             <div>
-              <h1>{this.state.selectedPlace.name}</h1>
+              <a href={this.state.selectedPlace.url}>
+                <h5>{this.state.selectedPlace.name}</h5>
+                <p>{this.state.selectedPlace.phone}</p>
+                <p>{this.state.selectedPlace.location}</p>
+              </a>
             </div>
         </InfoWindow>
         </Map>

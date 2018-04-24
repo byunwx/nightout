@@ -100,8 +100,8 @@ class Search extends Component {
                 this
                   .state
                   .yelpSearch
-                  .map(({name, location, url, price, phone}) => (
-                    <div key={url}>
+                  .map(({_id, name, location, url, price, phone, coordinates}) => (
+                    <div key={_id}>
                       <h6>
                         <a  href={`${url}`} target="_blank">{`${name}`}</a>
                         {` ${price}`}
@@ -110,11 +110,13 @@ class Search extends Component {
                       <p>{`${phone}`}</p>
                       <div className='btn-small hoverable search-page-btn' onClick={async ()=>{
                         const itinItem = {
+                          _id: this.state.currentItinerary.length + 1,
                           name: name,
                           location: location,
                           url: url,
                           price: price,
-                          phone: phone
+                          phone: phone,
+                          coordinates: coordinates
                         }
                         await this.setState({currentItinerary: [...this.state.currentItinerary, itinItem]})
                       }}>Add</div>
@@ -178,7 +180,7 @@ class Search extends Component {
               ))}
             <Mutation mutation={CREATE_ITINERARY} update={this.updateCache}>
             {createItinerary => (
-            <div
+            <Button
               className="btn-large finalize-btn" onClick={async e => {
                 e.preventDefault()
                 console.log(this.state.currentItinerary)
