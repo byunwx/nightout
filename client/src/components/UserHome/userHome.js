@@ -1,8 +1,11 @@
 import React, {Component} from "react";
-import { Query } from 'react-apollo'
+import { Query, Mutation } from 'react-apollo'
 import { ALL_ITINERARIES, GET_ITINERARY } from '../Search/queries'
 import ApolloClient from "apollo-boost";
+import {REMOVE_ITINERARY} from '../Search/queries'
+import {Button} from 'react-materialize'
 const client = new ApolloClient();
+
 class Home extends Component {
     state = {
         selectedItin: null
@@ -45,6 +48,21 @@ class Home extends Component {
                             })
                             this.setState({selectedItin: data.getItinerary})
                             }}>View Details</a>
+                            <Mutation mutation={REMOVE_ITINERARY}
+                            variables={{_id}}
+                            >
+                            {(removeItinerary, error) => (
+                                <Button
+                                className="btn-large finalize-btn" onClick={async e => {
+                                    e.preventDefault()
+                                      await removeItinerary({ variables: { _id: _id}})
+                                      if (error.error !== undefined) {
+                                        console.log(error.error)
+                                      }
+                                }}>Remove
+                                </Button>
+                            )}
+                            </Mutation>
                             </div>
                         ))}}
                     </Query>
