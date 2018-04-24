@@ -142,7 +142,7 @@ class Search extends Component {
             )) : <p>Your Current Itinerary will appear here once you've added something to it</p>}
             {this.state.currentItinerary.length > 0 ?
             <Modal
-              header='Review Itinerary'
+                header={<h5>Review Itinerary</h5>}
               trigger={<Button className="btn-small finalize-btn search-page-btn">Name This Date</Button>}
               >
                 <Input
