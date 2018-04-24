@@ -35,7 +35,6 @@ class Search extends Component {
   handleInputChange = event => {
     const {name, value} = event.target;
     this.setState({[name]: value});
-    console.log(this.state.yelpSearch);
   }
 
   render() {
@@ -146,18 +145,18 @@ class Search extends Component {
               trigger={<Button className="btn-small finalize-btn search-page-btn">Name This Date</Button>}
               >
                 <Input
-              className="result-name"        
+              className="result-name"
                 onChange={this.handleInputChange}
                 name="name"
                 placeholder="Name your Itinerary"/>
               <Input
-              className="result-body"    
+              className="result-body"
                onChange={this.handleInputChange}
                name="date"
                type="date"
                placeholder=""/>
                 <Input
-                className="result-body"    
+                className="result-body"
                 onChange={this.handleInputChange}
                 name="time"
                 type="time"
@@ -183,11 +182,10 @@ class Search extends Component {
             <Button
               className="btn-large finalize-btn" onClick={async e => {
                 e.preventDefault()
-                console.log(this.state.currentItinerary)
                  await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary } })
               }}>
               Finalize
-            </div>
+            </Button>
             )}
             </Mutation>
             </Modal>
