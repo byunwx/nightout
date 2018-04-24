@@ -48,24 +48,24 @@ class Search extends Component {
         {/*  Left Column
                         tabs: upcoming | Planning | Past
                         Render array of itins*/}
-        <div className="row">
-          <div className="sidebar col s12 m3 offset-m1">
+        <div className="row container content">
+          <div className="sidebar col s12 m3 ">
             <div className="row">
-            <h2>Search</h2>
+            <h3 className="center-align">Search</h3>
               {/* <p>Search tabs router goes here</p> */}
               <form>
                 <Input className="main-content"
                   onChange={this.handleInputChange}
                   name="search"
-                  placeholder="Search term"/>
+                  placeholder="Search"/>
                 <Input
                   onChange={this.handleInputChange}
                   name="location"
-                  placeholder="Location (Zip, Address, City"/>
+                  placeholder="Location (Zip, Address, City)"/>
                   <ApolloConsumer>
                     {client => (
                       <div
-                        className='btn hoverable'
+                        className=' search-page-btn hoverable waves-effect waves-light btn-small center-align'
                         onClick={async() => {
                         const {data} = await client.query({
                           query: GET_YELP_RESULT,
@@ -108,7 +108,7 @@ class Search extends Component {
                       </h6>
                       <p>{`${location}`}</p>
                       <p>{`${phone}`}</p>
-                      <div className='btn hoverable' onClick={async ()=>{
+                      <div className='btn-small hoverable search-page-btn' onClick={async ()=>{
                         const itinItem = {
                           name: name,
                           location: location,
@@ -117,42 +117,45 @@ class Search extends Component {
                           phone: phone
                         }
                         await this.setState({currentItinerary: [...this.state.currentItinerary, itinItem]})
-                      }}>Add to Itinerary</div>
+                      }}>Add</div>
                     </div>
                   ))
                 : <p>Results will appear here after you hit search!</p>}
             </div>
           <div className="main-content col s12 m3">
-            <h2>Itinerary</h2>
+            <h3 className="center-align">Itinerary</h3>
             {this.state.currentItinerary.length > 0 ? this.state.currentItinerary.map(({name, location, url, phone}, i) => (
                     <div key={url}>
                       <h6>
-                        <a className="x" href={`${url}`} target="_blank">{`${name}`}</a>
+                        <a  href={`${url}`} target="_blank">{`${name}`}</a>
                       </h6>
                       <p>{`${location}`}</p>
                       <p>{`${phone}`}</p>
-                      <div className='btn' onClick={async ()=>{
+                      <div className='btn-small search-page-btn' onClick={async ()=>{
                         await this.setState((prevState) => ({
                           currentItinerary: prevState.currentItinerary.filter((_, j) => j !== i)
                         }))
-                      }}>Remove from Itinerary</div>
+                      }}>Remove</div>
                     </div>
             )) : <p>Your Current Itinerary will appear here once you've added something to it</p>}
             {this.state.currentItinerary.length > 0 ?
             <Modal
               header='Review Itinerary'
-              trigger={<Button className="btn-small finalize-btn">Finalize Itinerary</Button>}
+              trigger={<Button className="btn-small finalize-btn search-page-btn">Name This Date</Button>}
               >
-              <Input
+                <Input
+              className="result-name"        
                 onChange={this.handleInputChange}
                 name="name"
                 placeholder="Name your Itinerary"/>
               <Input
+              className="result-body"    
                onChange={this.handleInputChange}
                name="date"
                type="date"
                placeholder=""/>
-              <Input
+                <Input
+                className="result-body"    
                 onChange={this.handleInputChange}
                 name="time"
                 type="time"
@@ -169,7 +172,7 @@ class Search extends Component {
                           currentItinerary: prevState.currentItinerary.filter((_, j) => j !== i)
                         }))
                       }}>
-                      Remove from Itinerary
+                     Delete
                   </div>
                 </div>
               ))}
@@ -181,7 +184,7 @@ class Search extends Component {
                 console.log(this.state.currentItinerary)
                  await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary } })
               }}>
-              Add to my Itineraries
+              Finalize
             </div>
             )}
             </Mutation>
@@ -189,9 +192,9 @@ class Search extends Component {
             : ''}
             </div>
             {/* end of Itinerary code */}
-            <div className="main-content col s12 m3">
-            <h2>Map</h2>
-            <MapView yelpSearch={this.state.yelpSearch} currentItinerary={this.state.currentItinerary}/>
+            <div className="col s12 m3">
+              {/* <h2 align="center">Map</h2> */}
+                <MapView className=" map" yelpSearch={this.state.yelpSearch} currentItinerary={this.state.currentItinerary}/>
           </div>
         </div>
       </div>
