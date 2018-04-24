@@ -28,6 +28,14 @@ app.use(
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 app.listen(PORT)
 
 console.log(`YASS QUEEN ON PORT: ${PORT}`)
