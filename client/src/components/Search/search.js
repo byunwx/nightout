@@ -201,7 +201,7 @@ class Search extends Component {
                 if (this.state.name === '' || this.state.date === '' || this.state.time === '' || this.state.currentItinerary.length === 0) {
                   return alert('Please fill out all fields')
                 }
-                await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary }})
+                await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary, userauth: this.state.profile.sub}})
                 if (error.error !== undefined) {
                   console.log(error.error)
                 }
