@@ -13,6 +13,7 @@
     }
   },
   "dependencies": {
+    "all": "^0.0.0",
     "apollo-boost": "^0.1.4",
     "auth0-js": "^9.4.2",
     "express": "^4.16.3",

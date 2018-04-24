@@ -31,6 +31,7 @@ type Restaurant {
   coordinates: [Float]
 }
 input RestaurantInput {
+    _id: Int
     name: String
     location: String
     url: String

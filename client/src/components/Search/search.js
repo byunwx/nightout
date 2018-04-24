@@ -7,6 +7,7 @@ import {GET_YELP_RESULT, CREATE_ITINERARY, ALL_ITINERARIES} from './queries'
 import {Modal, Button} from 'react-materialize'
 import {Mutation} from 'react-apollo'
 
+// Jon TODO: add remove/update itinerary buttons w/functionality, deal with the modal
 class Search extends Component {
   state = {
     yelpSearch: null,
@@ -177,12 +178,34 @@ class Search extends Component {
                   </div>
                 </div>
               ))}
-            <Mutation mutation={CREATE_ITINERARY} update={this.updateCache}>
-            {createItinerary => (
+            <Mutation mutation={CREATE_ITINERARY}
+            onCompleted={(data)=>{
+            const activities = data.createItinerary.activities.map(x => {
+              const presentable =`
+              Name: ${x.name}
+              Location: ${x.location}
+              Phone: ${x.phone}`
+              //  JSON.stringify(x, null, 2)
+               return presentable
+              }
+              )
+            alert(`     Itinerary Created!
+            Name: ${data.createItinerary.name}
+            Date: ${data.createItinerary.date}
+            Time: ${data.createItinerary.time}
+            Activities: ${activities}`
+            )}}>
+            {(createItinerary, error) => (
             <Button
               className="btn-large finalize-btn" onClick={async e => {
                 e.preventDefault()
-                 await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary } })
+                if (this.state.name === '' || this.state.date === '' || this.state.time === '' || this.state.currentItinerary.length === 0) {
+                  return alert('Please fill out all fields')
+                }
+                await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary }})
+                if (error.error !== undefined) {
+                  console.log(error.error)
+                }
               }}>
               Finalize
             </Button>

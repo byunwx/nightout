@@ -75,7 +75,7 @@ class Container extends Component {
           ) : (this.state.yelpSearch.map(({_id, name, location, url, price, phone, coordinates}) => {
               return (
                   <Marker
-                    key={`${name}`}
+                    key={`${_id}`}
                     name={`${name}`}
                     phone={`${phone}`}
                     location={`${location}`}
