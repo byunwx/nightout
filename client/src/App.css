@@ -210,3 +210,9 @@ font-weight: 900;
 .result-body{
   color: rgb(61, 69, 141)
 }
+
+/* Jon's button */
+.finalize-btn {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
