@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import MapView from '../mapView/mapView';
 import Input from './input'
 import { ApolloConsumer } from "react-apollo";
-import {GET_YELP_RESULT, CREATE_ITINERARY, ALL_ITINERARIES} from './queries'
+import {GET_YELP_RESULT, CREATE_ITINERARY} from './queries'
 import {Modal, Button} from 'react-materialize'
 import {Mutation} from 'react-apollo'
 
