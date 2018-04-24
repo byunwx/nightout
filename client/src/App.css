@@ -7,7 +7,7 @@ body{
   position: fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%; 
+  min-width: 100%;
   min-height: 100%;
 }
 
@@ -27,14 +27,14 @@ body{
 }
 
 /* Landscape phones and down */
-@media (max-width: 480px) { 
+@media (max-width: 480px) {
   .logo{
     font-family: 'Covered By Your Grace', cursive;
     font-size: 20px;
   }
 }
 /* Landscape phone to portrait tablet */
-@media (max-width: 767px) { 
+@media (max-width: 767px) {
   .logo{
     font-family: 'Covered By Your Grace', cursive;
     font-size: 40px;
@@ -42,7 +42,7 @@ body{
 
 }
 /* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 1199px) { 
+@media (min-width: 768px) and (max-width: 1199px) {
   .logo{
     font-family: 'Covered By Your Grace', cursive;
     font-size: 70px;
@@ -56,14 +56,14 @@ body{
 }
 
 /* Landscape phones and down */
-@media (max-width: 480px) { 
+@media (max-width: 480px) {
   .tagline {
 
     font-size: 20px;
   }
 }
 /* Landscape phone to portrait tablet */
-@media (max-width: 767px) { 
+@media (max-width: 767px) {
   .tagline {
 
     font-size: 40px;
@@ -71,7 +71,7 @@ body{
 
 }
 /* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 1199px) { 
+@media (min-width: 768px) and (max-width: 1199px) {
   .tagline {
 
     font-size: 40px;
@@ -129,8 +129,8 @@ body{
 align-content: center;
 margin: 20px;
 }
+
 p, a, h2, h3, h4 {
-  
   font-family: 'Comfortaa', cursive;
   color: rgb(253, 242, 255);
 }
@@ -152,7 +152,7 @@ nav{
   position: fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%; 
+  min-width: 100%;
   min-height: 100%;
   z-index: -10;
 }
