@@ -7,6 +7,7 @@ import {GET_YELP_RESULT, CREATE_ITINERARY, ALL_ITINERARIES} from './queries'
 import {Modal, Button} from 'react-materialize'
 import {Mutation} from 'react-apollo'
 
+// Jon TODO: add remove/update itinerary buttons w/functionality, deal with the modal
 class Search extends Component {
   state = {
     yelpSearch: null,

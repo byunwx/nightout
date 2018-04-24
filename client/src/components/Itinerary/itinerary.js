@@ -1,5 +1,5 @@
 /*dependencies*/
-import React, {Component} from "react";
+import React from "react";
 import { Query } from 'react-apollo'
 import { ALL_ITINERARIES } from '../Search/queries'
 
