@@ -102,7 +102,7 @@ class Search extends Component {
                   .map(({_id, name, location, url, price, phone, coordinates}) => (
                     <div key={_id}>
                       <h6>
-                        <a className="x" href={`${url}`} target="_blank">{`${_id} ${name}`}</a>
+                        <a  href={`${url}`} target="_blank">{`${name}`}</a>
                         {` ${price}`}
                       </h6>
                       <p>{`${location}`}</p>
