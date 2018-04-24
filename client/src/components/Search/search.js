@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import MapView from '../mapView/mapView';
 import Input from './input'
 import { ApolloConsumer } from "react-apollo";
-import {GET_YELP_RESULT, CREATE_ITINERARY, ALL_ITINERARIES} from './queries'
+import {GET_YELP_RESULT, CREATE_ITINERARY} from './queries'
 import {Modal, Button} from 'react-materialize'
 import {Mutation} from 'react-apollo'
 
@@ -100,10 +100,10 @@ class Search extends Component {
                 this
                   .state
                   .yelpSearch
-                  .map(({_id, name, location, url, price, phone, coordinates}) => (
+                  .map(({_id, name, location, url, price, phone, coordinates}, i) => (
                     <div key={_id}>
                       <h6>
-                        <a  href={`${url}`} target="_blank">{`${name}`}</a>
+                        <a  href={`${url}`} target="_blank">{`${i + 1} ${name}`}</a>
                         {` ${price}`}
                       </h6>
                       <p>{`${location}`}</p>
@@ -129,7 +129,7 @@ class Search extends Component {
             {this.state.currentItinerary.length > 0 ? this.state.currentItinerary.map(({name, location, url, phone}, i) => (
                     <div key={url}>
                       <h6>
-                        <a  href={`${url}`} target="_blank">{`${name}`}</a>
+                        <a href={`${url}`} target="_blank">{`${name}`}</a>
                       </h6>
                       <p>{`${location}`}</p>
                       <p>{`${phone}`}</p>
