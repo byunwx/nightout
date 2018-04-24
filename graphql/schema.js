@@ -12,6 +12,7 @@ type Itinerary {
   date: String
   time: String
   activities: [Restaurant]
+  userauth: String
 }
 type Activity {
   name: String
@@ -72,6 +73,7 @@ type Mutation {
     date: String
     time: String
     activities: [RestaurantInput]
+    userauth: String
   ): Itinerary,
   removeItinerary(
     _id: String!
