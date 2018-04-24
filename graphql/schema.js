@@ -54,7 +54,9 @@ type Query {
   getUser(
     _id: String!
   ): User!,
-  allItineraries: [Itinerary],
+  allItineraries(
+    userauth: String
+  ): [Itinerary],
   getItinerary(
     _id: String!
   ): Itinerary!
@@ -71,8 +73,7 @@ type Mutation {
     name: String
     date: String
     time: String
-    activities: [RestaurantInput]
-  ): Itinerary,
+    activities: [RestaurantInput]): Itinerary,
   removeItinerary(
     _id: String!
   ): Itinerary

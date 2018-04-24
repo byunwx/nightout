@@ -7,7 +7,7 @@ import {Button} from 'react-materialize'
 const client = new ApolloClient();
 
 const updateCache = (cache, { data: { removeItinerary } }) => {
-    const { allItineraries } = cache.readQuery({ query: ALL_ITINERARIES })
+    const { allItineraries } = cache.readQuery({ query: ALL_ITINERARIES }, {variables: this.state.profile.sub})
 
     cache.writeQuery({
       query: ALL_ITINERARIES,
@@ -52,7 +52,9 @@ class Home extends Component {
                 </div>
                 <div className="row container content">
                     <div className="sidebar col s12 m3 offset-m1">
-                    <Query query={ALL_ITINERARIES}>
+                    <Query query={ALL_ITINERARIES}
+                    variables={this.state.profile.sub}
+                    >
                         {({ loading, error, data }) => {
                         if (loading) return <p>Loading...</p>;
                         if (error) return <p>Error :(</p>;

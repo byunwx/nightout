@@ -17,8 +17,8 @@ query getItinerary($_id: String!) {
 `
 
 const ALL_ITINERARIES = gql`
-query allItineraries {
-    allItineraries {
+query allItineraries($userauth: String) {
+    allItineraries(userauth: $userauth) {
         _id
         name
         date
