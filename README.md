@@ -31,7 +31,15 @@ Developers: Jon Telles, Jessica Creiglow, Woojoo Byun
 - [x] Use Auth.0 for Authentication
 - [x] Query Yelp API to get activity results
 - [x] Save Results to DB using MongoDB
+- [x] Map displays markers for search results
 - [ ] Chat Functionality
+- [ ] Ability to Up or Downvote a choice
+- [ ] Allow users to make reservations at restaurants
+- [ ] allow users to buy tickets to an event
+- [ ] transportation options
+- [ ] parking options in the area
+- [ ] link to lyft
+- [ ] send link to date itinerary without second user having to login
 - [ ] Search local events - concerts, sports, etc
 - [ ] Section for notes on activities or date itineraries
 - [ ] Ability to link accounts with someone else to plan together
