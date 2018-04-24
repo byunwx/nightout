@@ -185,7 +185,6 @@ class Search extends Component {
               Name: ${x.name}
               Location: ${x.location}
               Phone: ${x.phone}`
-              //  JSON.stringify(x, null, 2)
                return presentable
               }
               )

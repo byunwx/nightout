@@ -60,5 +60,12 @@ const GET_YELP_RESULT = gql`query yelpSearch($search: String  $location: String)
     }
   }
   `
+  const REMOVE_ITINERARY = gql`mutation removeItinerary($_id: String!) {
+    removeItinerary(_id: $_id) {
+      _id
+      name
+    }
+  }
+  `
 
-export { GET_ITINERARY, ALL_ITINERARIES, CREATE_ITINERARY,   GET_YELP_RESULT }
+export { GET_ITINERARY, ALL_ITINERARIES, CREATE_ITINERARY,   GET_YELP_RESULT, REMOVE_ITINERARY }
