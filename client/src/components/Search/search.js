@@ -7,6 +7,7 @@ import {GET_YELP_RESULT, CREATE_ITINERARY, ALL_ITINERARIES} from './queries'
 import {Modal, Button} from 'react-materialize'
 import {Mutation} from 'react-apollo'
 
+// Jon TODO: add remove/update itinerary buttons w/functionality, deal with the modal
 class Search extends Component {
   state = {
     yelpSearch: null,
@@ -35,7 +36,6 @@ class Search extends Component {
   handleInputChange = event => {
     const {name, value} = event.target;
     this.setState({[name]: value});
-    console.log(this.state.yelpSearch);
   }
 
   render() {
@@ -100,8 +100,8 @@ class Search extends Component {
                 this
                   .state
                   .yelpSearch
-                  .map(({name, location, url, price, phone}) => (
-                    <div key={url}>
+                  .map(({_id, name, location, url, price, phone, coordinates}) => (
+                    <div key={_id}>
                       <h6>
                         <a  href={`${url}`} target="_blank">{`${name}`}</a>
                         {` ${price}`}
@@ -110,11 +110,13 @@ class Search extends Component {
                       <p>{`${phone}`}</p>
                       <div className='btn-small hoverable search-page-btn' onClick={async ()=>{
                         const itinItem = {
+                          _id: this.state.currentItinerary.length + 1,
                           name: name,
                           location: location,
                           url: url,
                           price: price,
-                          phone: phone
+                          phone: phone,
+                          coordinates: coordinates
                         }
                         await this.setState({currentItinerary: [...this.state.currentItinerary, itinItem]})
                       }}>Add</div>
@@ -144,18 +146,18 @@ class Search extends Component {
               trigger={<Button className="btn-small finalize-btn search-page-btn">Name This Date</Button>}
               >
                 <Input
-              className="result-name"        
+              className="result-name"
                 onChange={this.handleInputChange}
                 name="name"
                 placeholder="Name your Itinerary"/>
               <Input
-              className="result-body"    
+              className="result-body"
                onChange={this.handleInputChange}
                name="date"
                type="date"
                placeholder=""/>
                 <Input
-                className="result-body"    
+                className="result-body"
                 onChange={this.handleInputChange}
                 name="time"
                 type="time"
@@ -176,16 +178,37 @@ class Search extends Component {
                   </div>
                 </div>
               ))}
-            <Mutation mutation={CREATE_ITINERARY} update={this.updateCache}>
-            {createItinerary => (
-            <div
+            <Mutation mutation={CREATE_ITINERARY}
+            onCompleted={(data)=>{
+            const activities = data.createItinerary.activities.map(x => {
+              const presentable =`
+              Name: ${x.name}
+              Location: ${x.location}
+              Phone: ${x.phone}`
+              //  JSON.stringify(x, null, 2)
+               return presentable
+              }
+              )
+            alert(`     Itinerary Created!
+            Name: ${data.createItinerary.name}
+            Date: ${data.createItinerary.date}
+            Time: ${data.createItinerary.time}
+            Activities: ${activities}`
+            )}}>
+            {(createItinerary, error) => (
+            <Button
               className="btn-large finalize-btn" onClick={async e => {
                 e.preventDefault()
-                console.log(this.state.currentItinerary)
-                 await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary } })
+                if (this.state.name === '' || this.state.date === '' || this.state.time === '' || this.state.currentItinerary.length === 0) {
+                  return alert('Please fill out all fields')
+                }
+                await createItinerary({ variables: { name: this.state.name, date: this.state.date, time: this.state.time, activities: this.state.currentItinerary }})
+                if (error.error !== undefined) {
+                  console.log(error.error)
+                }
               }}>
               Finalize
-            </div>
+            </Button>
             )}
             </Mutation>
             </Modal>

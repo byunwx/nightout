@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import { Query } from 'react-apollo'
 import { ALL_ITINERARIES, GET_ITINERARY } from '../Search/queries'
 import ApolloClient from "apollo-boost";
-import Itinerary from '../Itinerary/itinerary';
 const client = new ApolloClient();
 class Home extends Component {
     state = {
