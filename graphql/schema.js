@@ -12,6 +12,7 @@ type Itinerary {
   date: String
   time: String
   activities: [Restaurant]
+  userauth: String
 }
 type Activity {
   name: String
