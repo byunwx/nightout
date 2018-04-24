@@ -217,6 +217,12 @@ font-weight: 900;
   color: rgb(61, 69, 141)
 }
 
+.map-body{
+  color: rgb(61, 69, 141);
+  font-size: 13px;
+}
+
+
 /* Jon's button */
 .finalize-btn {
   margin-top: 2rem;
