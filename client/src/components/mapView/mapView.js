@@ -45,7 +45,7 @@ class Container extends Component {
 
 
   render() {
-    this.state.yelpSearch && this.state.currentLat!=this.state.yelpSearch[0].coordinates[0] && this.state.currentLng!=this.state.yelpSearch[0].coordinates[1] ? this.reCenter():console.log("wait");
+    this.state.yelpSearch && this.state.currentLat!==this.state.yelpSearch[0].coordinates[0] && this.state.currentLng!==this.state.yelpSearch[0].coordinates[1] ? this.reCenter():console.log("wait");
     const style = {
       width: '38%',
       height: '70%'
