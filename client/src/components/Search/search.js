@@ -146,18 +146,18 @@ class Search extends Component {
               trigger={<Button className="btn-small finalize-btn search-page-btn">Name This Date</Button>}
               >
                 <Input
-              className="result-name"        
+              className="result-name"
                 onChange={this.handleInputChange}
                 name="name"
                 placeholder="Name your Itinerary"/>
               <Input
-              className="result-body"    
+              className="result-body"
                onChange={this.handleInputChange}
                name="date"
                type="date"
                placeholder=""/>
                 <Input
-                className="result-body"    
+                className="result-body"
                 onChange={this.handleInputChange}
                 name="time"
                 type="time"
@@ -180,14 +180,21 @@ class Search extends Component {
               ))}
             <Mutation mutation={CREATE_ITINERARY}
             onCompleted={(data)=>{
-            const activities = data.createItinerary.activities.map(x => JSON.stringify(x, null, 2))
-            alert(`Itinerary Created!
+            const activities = data.createItinerary.activities.map(x => {
+              const presentable =`
+              Name: ${x.name}
+              Location: ${x.location}
+              Phone: ${x.phone}`
+              //  JSON.stringify(x, null, 2)
+               return presentable
+              }
+              )
+            alert(`     Itinerary Created!
             Name: ${data.createItinerary.name}
             Date: ${data.createItinerary.date}
             Time: ${data.createItinerary.time}
-            Activities: ${activities}
-            `)}}
-            >
+            Activities: ${activities}`
+            )}}>
             {(createItinerary, error) => (
             <Button
               className="btn-large finalize-btn" onClick={async e => {
@@ -201,7 +208,7 @@ class Search extends Component {
                 }
               }}>
               Finalize
-            </div>
+            </Button>
             )}
             </Mutation>
             </Modal>
