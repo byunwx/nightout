@@ -1,5 +1,5 @@
 import axios from 'axios'
- 
+
 export default {
   Query : {
     allUsers: async(root, args, {User}) => {
@@ -16,7 +16,7 @@ export default {
       return user
     },
     allItineraries: async(root, args, {Itinerary}) => {
-      const itineraries = await Itinerary.find(args.userauth)
+      const itineraries = await Itinerary.find(args)
       return itineraries.map(x => {
         x._id = x
           ._id

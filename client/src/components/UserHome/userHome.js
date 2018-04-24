@@ -53,7 +53,7 @@ class Home extends Component {
                 <div className="row container content">
                     <div className="sidebar col s12 m3 offset-m1">
                     <Query query={ALL_ITINERARIES}
-                    variables={this.state.profile.sub}
+                    variables={{userauth: this.state.profile.sub}}
                     >
                         {({ loading, error, data }) => {
                         if (loading) return <p>Loading...</p>;
