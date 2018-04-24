@@ -5,7 +5,18 @@ import ApolloClient from "apollo-boost";
 const client = new ApolloClient();
 class Home extends Component {
     state = {
-        selectedItin: null
+        selectedItin: null,
+        profile:{}
+    }
+    componentWillMount() {
+      const { userProfile, getProfile } = this.props.auth;
+      if (!userProfile) {
+        getProfile((err, profile) => {
+          this.setState({ profile });
+        });
+      } else {
+        this.setState({ profile: userProfile });
+      }
     }
 
     render() {
@@ -61,10 +72,10 @@ class Home extends Component {
                                 <h5>
                                 <a className="" href={`${url}`} target="_blank">{`${name}`}</a>
                                         </h5>
-                                <div className="row">        
+                                <div className="row">
                                 <p className="col offset-s1">{`${location}`}</p>
                                             <p className="col offset-s1">{`${phone}`}</p>
-                                </div>            
+                                </div>
                             </div>))}
                     </div>
                     : <p>Select an Itinerary for more details</p>}
