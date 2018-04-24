@@ -76,7 +76,7 @@ class Home extends Component {
                             >
                             {(removeItinerary, error) => (
                                 <Button
-                                className="btn-large finalize-btn" onClick={async e => {
+                                className="btn-small" onClick={async e => {
                                     e.preventDefault()
                                       await removeItinerary({ variables: { _id: _id}})
                                       if (error.error !== undefined) {

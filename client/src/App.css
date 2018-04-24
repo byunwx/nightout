@@ -140,6 +140,11 @@ p, a, h2, h3, h4, h5, h6 {
 }
 h5{
  font-weight: 900;
+ color: rgb(198, 95, 216);
+}
+.btn-small{
+  margin-right: 10px;
+
 }
 h4{
   text-align: center;
