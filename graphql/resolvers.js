@@ -108,7 +108,7 @@ export default {
       return itinerary
     },
     removeItinerary: async(root, args, {Itinerary}) => {
-      const itinerary = await Itinerary.findByIdAndRemove(args._id).save()
+      const itinerary = await Itinerary.findByIdAndRemove(args._id)
       return itinerary
     }
   }

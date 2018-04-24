@@ -6,6 +6,17 @@ import {REMOVE_ITINERARY} from '../Search/queries'
 import {Button} from 'react-materialize'
 const client = new ApolloClient();
 
+const updateCache = (cache, { data: { removeItinerary } }) => {
+    const { allItineraries } = cache.readQuery({ query: ALL_ITINERARIES })
+
+    cache.writeQuery({
+      query: ALL_ITINERARIES,
+      data: {
+        allItineraries: allItineraries.filter(itineraries => itineraries._id !== removeItinerary._id)
+      }
+    })
+  }
+
 class Home extends Component {
     state = {
         selectedItin: null
@@ -50,6 +61,7 @@ class Home extends Component {
                             }}>View Details</a>
                             <Mutation mutation={REMOVE_ITINERARY}
                             variables={{_id}}
+                            update={updateCache}
                             >
                             {(removeItinerary, error) => (
                                 <Button
@@ -79,10 +91,10 @@ class Home extends Component {
                                 <h5>
                                 <a className="" href={`${url}`} target="_blank">{`${name}`}</a>
                                         </h5>
-                                <div className="row">        
+                                <div className="row">
                                 <p className="col offset-s1">{`${location}`}</p>
                                             <p className="col offset-s1">{`${phone}`}</p>
-                                </div>            
+                                </div>
                             </div>))}
                     </div>
                     : <p>Select an Itinerary for more details</p>}
