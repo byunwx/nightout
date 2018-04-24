@@ -1,6 +1,8 @@
-# Night Out
+# Date Night Out
 
 _easily plan your next night out_
+
+https://datenightout.herokuapp.com
 
 Developers: Jon Telles, Jessica Creiglow, Woojoo Byun
 
