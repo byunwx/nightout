@@ -65,7 +65,7 @@ class Home extends Component {
                                 <p>{`${phone}`}</p>
                             </div>))}
                     </div>
-                    : "Select an Itinerary for more details"}
+                    : <p>Select an Itinerary for more details</p>}
                     </div>
                 </div>
             </div>
